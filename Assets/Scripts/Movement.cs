@@ -17,8 +17,13 @@ public class Movement : MonoBehaviour{
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
 			if (Physics.Raycast (ray, out hit, 100)) {
-				agent.SetDestination (hit.point);
-			
+				if (hit.transform.tag == "Ground") {	
+					agent.SetDestination (hit.point);
+				} else if (hit.transform.tag == "NPC"){
+					NPC targetnpc = hit.transform.gameObject.GetComponent<NPC>();
+					agent.SetDestination (targetnpc.InteractionCube.transform.position);
+					targetnpc.TalkToThisNPC ();
+				}
 			}
 		}
 	}

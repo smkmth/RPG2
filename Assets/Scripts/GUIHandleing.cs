@@ -39,14 +39,18 @@ public class GUIHandleing : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (_GameState.gameState == 1){
+		if (_GameState.gameState == 1) {
 			if (Input.GetKeyDown (KeyCode.I) && InventoryOn == false) {
 				Inventory.SetActive (true);
 				InventoryOn = true;
 				_GameState.gameState = 2;
 				
 			
-			} else if (Input.GetKeyDown (KeyCode.I) && InventoryOn == true) {
+			}
+
+		} else if (_GameState.gameState == 2) {
+
+			if (Input.GetKeyDown (KeyCode.I) && InventoryOn == true) {
 				Inventory.SetActive (false);
 				InventoryOn = false;
 				_GameState.gameState = 1;
