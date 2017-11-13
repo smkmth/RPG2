@@ -5,9 +5,12 @@ using UnityEngine;
 public class NPC : MonoBehaviour {
 
 	public GameObject InteractionCube;
+	public Topic StartTopic;
+	public DialogueHandler _Dialogue;
 
 	// Use this for initialization
 	void Start () {
+
 		
 	}
 	
@@ -17,6 +20,9 @@ public class NPC : MonoBehaviour {
 	}
 
 	public void TalkToThisNPC(){
+		_Dialogue = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<DialogueHandler> ();
+
 		Debug.Log("The npc is talking");
+		_Dialogue.RunDialogueStart (gameObject);
 	}
 }
