@@ -43,11 +43,13 @@ public class GUIHandleing : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.I) && InventoryOn == false) {
 				Inventory.SetActive (true);
 				InventoryOn = true;
+				_GameState.gameState = 2;
 				
 			
 			} else if (Input.GetKeyDown (KeyCode.I) && InventoryOn == true) {
 				Inventory.SetActive (false);
 				InventoryOn = false;
+				_GameState.gameState = 1;
 			}
 		}
 	}
