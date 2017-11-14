@@ -21,10 +21,12 @@ public class DialogueHandler : MonoBehaviour {
 	public GameObject DialogueWindow;
 	public GameObject DialogueResponceWindow;
 	public GameState _GameState;
+	public Player _Player;
 	public List<Button> responceList = new List<Button>();
 
 
 	void Start(){
+		_Player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player>();
 		DialogueWindow.SetActive (false);
 		DialogueResponceWindow.SetActive (false);
 		responceList.Add (Responce1);
@@ -64,18 +66,46 @@ public class DialogueHandler : MonoBehaviour {
 			if (count == max) {
 				break;
 			}
-
-			button.gameObject.SetActive (true);
-
 			button.GetComponentInChildren<Text> ().text = npcd.StartTopic.responces [count].responce;
 			activeResponceList.Add (npcd.StartTopic.responces [count]);
 
+			if (activeResponceList [count].Requirement == true) {
+				if (activeResponceList [count].RequirementType == "Strength") {
+					if (_Player.Strength > activeResponceList [count].RequirementChallange) {
+						button.gameObject.SetActive (true);
+						count += 1;
+
+					
+					} else {
+						button.gameObject.SetActive (false);
+						count += 1;
+
+
+					}
+				} else if (activeResponceList [count].RequirementType == "Dexterity") {
+					if (_Player.Dexterity > activeResponceList [count].RequirementChallange) {
+						button.gameObject.SetActive (true);
+						count += 1;
+
+
+					} else {
+						button.gameObject.SetActive (false);
+						count += 1;
+
+
+					}
+				}
+					
+				
+			} else {
+				button.gameObject.SetActive (true);
+				count += 1;
+
+			}
+			}
+
 			Debug.Log (count + npcd.StartTopic.responces [count].responce);
 
-			count += 1;
-
-
-		}
 
 	}
 		
@@ -114,6 +144,34 @@ public class DialogueHandler : MonoBehaviour {
 		NPCText.text += activeResponceList [4].responce;
 
 		PlayNextResponce (activeResponceList [4].NextDialogue);
+
+	}
+	public void Option5(){
+		NPCText.text += "\n";
+		NPCText.text += activeResponceList [5].responce;
+
+		PlayNextResponce (activeResponceList [5].NextDialogue);
+
+	}
+	public void Option6(){
+		NPCText.text += "\n";
+		NPCText.text += activeResponceList [6].responce;
+
+		PlayNextResponce (activeResponceList[6].NextDialogue);
+
+	}
+	public void Option7(){
+		NPCText.text += "\n";
+		NPCText.text += activeResponceList [7].responce;
+
+		PlayNextResponce (activeResponceList [7].NextDialogue);
+
+	}
+	public void Option8(){
+		NPCText.text += "\n";
+		NPCText.text += activeResponceList [8].responce;
+
+		PlayNextResponce (activeResponceList [8].NextDialogue);
 
 	}
 	public void Option9(){
