@@ -6,6 +6,7 @@ using UnityEngine;
 public class Responce : ScriptableObject {
 
 	public string ResponceName;
+	public string SpeakerName;
 	public Topic NextDialogue;
 	public string responce;
 	public bool Requirement;

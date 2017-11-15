@@ -146,5 +146,51 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+//	else if (activeResponceList [count].RequirementType == "Dexterity") {
+//		if (_Player.Dexterity > activeResponceList [count].RequirementChallange) {
+//			button.gameObject.SetActive (true);
+//			count += 1;
+
+	public bool SkillRequireCheck(string challangeType, int challange){
+		if (challangeType == "Strength") {
+			if (Strength > challange) {
+				return true;
+			} else {
+				return false;
+			}
+		} else if (challangeType == "Dexterity") {
+			if (Dexterity > challange) {
+				return true;
+			} else {
+				return false;
+			}
+		} else if (challangeType == "Constitution") {
+			if (Constitution > challange) {
+				return true;
+			} else {
+				return false;
+			}
+		} else if (challangeType == "Intellegence") {
+			if (Intellegence > challange) {
+				return true;
+			} else {
+				return false;
+			}
+		} else if (challangeType == "Wisdom") {
+			if (Wisdom > challange) {
+				return true;
+			} else {
+				return false;
+			}
+		} else if (challangeType == "Charisma") {
+			if (Charisma > challange) {
+				return true;	
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 
 }

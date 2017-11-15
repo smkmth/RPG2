@@ -57,8 +57,9 @@ public class DialogueHandler : MonoBehaviour {
 		DialogueResponceWindow.SetActive (true);
 		_GameState.gameState = 4;
 		NPC npcd = npc.GetComponent<NPC> ();
+		NPCText.text = " " + npcd.StartTopic.SpeakerName + " ";
 
-		NPCText.text = npcd.StartTopic.Dialouge;
+		NPCText.text += npcd.StartTopic.Dialouge;
 		var max = npcd.StartTopic.responces.Count;
 		Debug.Log (npcd.StartTopic.responces.Count);
 		var count = 0;
@@ -70,41 +71,24 @@ public class DialogueHandler : MonoBehaviour {
 			activeResponceList.Add (npcd.StartTopic.responces [count]);
 
 			if (activeResponceList [count].Requirement == true) {
-				if (activeResponceList [count].RequirementType == "Strength") {
-					if (_Player.Strength > activeResponceList [count].RequirementChallange) {
-						button.gameObject.SetActive (true);
-						count += 1;
-
-					
-					} else {
-						button.gameObject.SetActive (false);
-						count += 1;
-
-
-					}
-				} else if (activeResponceList [count].RequirementType == "Dexterity") {
-					if (_Player.Dexterity > activeResponceList [count].RequirementChallange) {
-						button.gameObject.SetActive (true);
-						count += 1;
-
-
-					} else {
-						button.gameObject.SetActive (false);
-						count += 1;
-
-
-					}
+				if (_Player.SkillRequireCheck (activeResponceList [count].RequirementType, activeResponceList [count].RequirementChallange)) {
+					Debug.Log (_Player.SkillRequireCheck (activeResponceList [count].RequirementType, activeResponceList [count].RequirementChallange));
+					button.gameObject.SetActive (true);
+					count += 1;
+				} else {
+					button.gameObject.SetActive (false);
+					Debug.Log ("You cannot use the responce " + activeResponceList [count].responce + "without " + activeResponceList [count].RequirementType + activeResponceList [count].RequirementChallange);
+					count += 1;
 				}
-					
-				
 			} else {
 				button.gameObject.SetActive (true);
 				count += 1;
+			}
+		
+						
 
 			}
-			}
 
-			Debug.Log (count + npcd.StartTopic.responces [count].responce);
 
 
 	}
@@ -113,6 +97,7 @@ public class DialogueHandler : MonoBehaviour {
 	public void Option0(){
 		
 		NPCText.text += "\n";
+		NPCText.text += " " + _Player.Name;
 		NPCText.text += activeResponceList [0].responce;
 
 		PlayNextResponce (activeResponceList [0].NextDialogue);
@@ -180,6 +165,7 @@ public class DialogueHandler : MonoBehaviour {
 
 	public void PlayNextResponce(Topic dialogue){
 		NPCText.text += "\n";
+		NPCText.text += " " + dialogue.SpeakerName + " ";
 	
 		Debug.Log (dialogue.Dialouge);
 		NPCText.text += dialogue.Dialouge;
