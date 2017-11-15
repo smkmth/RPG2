@@ -5,6 +5,27 @@ using System.Collections;
 
 
 public class Player : MonoBehaviour {
+
+	void Start(){
+		ClearInventory ();
+
+	}
+
+	public ItemList Inventory;
+
+	public void AddInventoryItem(Item item){
+		Inventory.itemList.Add (item);
+		EventManager.TriggerEvent("VariableChanged");
+	}
+	public void RemoveInvetoryItem(Item item){
+		Inventory.itemList.Remove (item);
+		EventManager.TriggerEvent("VariableChanged");
+
+	}
+	public void ClearInventory(){
+		Inventory.itemList.Clear ();
+	}
+
 	
 
 	[SerializeField]
