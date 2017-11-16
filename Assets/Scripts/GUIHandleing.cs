@@ -16,6 +16,7 @@ public class GUIHandleing : MonoBehaviour {
 	public Text Stats;
 	public bool InventoryOn;
 	public Sprite nullSprite;
+	public Item displayItem;
 
 	public List<GameObject> ItemSlots = new List<GameObject>();
 	public List<Image> ItemImage = new List<Image>();
@@ -52,7 +53,7 @@ public class GUIHandleing : MonoBehaviour {
 			
 		}
 		foreach (Text text in ItemText) {
-			text.text = " Null ";
+			text.text = "  ";
 			
 		}
 		foreach (Image image in ItemImage) {
@@ -69,6 +70,8 @@ public class GUIHandleing : MonoBehaviour {
 	}
 	public void DisplayItem(int buttonindex){
 		Debug.Log (_Player.Inventory.itemList [buttonindex]);
+		displayItem = _Player.Inventory.itemList [buttonindex];
+
 		DynamicNameText.text = _Player.Inventory.itemList [buttonindex].itemName;
 	}
 	

@@ -15,6 +15,10 @@ public class CharacterCreate : MonoBehaviour {
 	public Dropdown IntDropdown;
 	public Dropdown WisDropdown;
 	public Dropdown ChaDropdown;
+	public Dropdown RaceDropDdown;
+	public List<Race> PlayableRaces = new List<Race> ();
+	public List<string> PlayableRacesNames = new List<string>();
+
 
 	public void GetName(){
 		Debug.Log (NameField.text);
@@ -25,6 +29,11 @@ public class CharacterCreate : MonoBehaviour {
 		Debug.Log (GenderDropdown.captionText.text);
 		_Player.Gender = GenderDropdown.captionText.text;
 	}
+
+	public void GetRace(){
+		_Player.PlayerRace = PlayableRaces [RaceDropDdown.value];
+	}
+
 	public void GetStrength(){
 		_Player.Strength = StrDropdown.value;
 		Debug.Log (StrDropdown.value);
@@ -47,8 +56,14 @@ public class CharacterCreate : MonoBehaviour {
 		_Player.Charisma = ChaDropdown.value;
 	
 	}
+		
 	// Use this for initialization
 	void Start () {
+
+		foreach (Race race in PlayableRaces) {
+			PlayableRacesNames.Add (race.RaceName);
+		}
+		RaceDropDdown.AddOptions (PlayableRacesNames);
 		
 		
 		

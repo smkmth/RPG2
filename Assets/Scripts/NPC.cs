@@ -8,16 +8,7 @@ public class NPC : MonoBehaviour {
 	public Topic StartTopic;
 	public DialogueHandler _Dialogue;
 
-	// Use this for initialization
-	void Start () {
 
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	public void TalkToThisNPC(){
 		_Dialogue = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<DialogueHandler> ();

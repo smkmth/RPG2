@@ -3,15 +3,48 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
-
+/// <summary>
+/// Variables:
+/// string Name;
+/// string Gender;
+/// int Health;
+/// int Strength;
+/// int Dexterity;
+/// int Constitution;
+/// int Wisdom;
+/// int Charisma;
+/// ItemList Inventory;
+/// Race PlayerRace;
+/// Methods:
+/// SkillRequireCheck() - which returns true if a 
+/// player has the correct stat requirements, and false if not.
+/// ClearInventory() - clears players inventory on start- becuase
+/// any items picked up will stay in the inventory even after closeing 
+/// game
+/// AddInventoryItem(Item) - needs an 'item' - will add the item to 
+/// the inventory
+/// RemoveInventoryItem(Item) - Needs an 'item' - will remove the item
+/// from the inventory.
+/// </summary>
 public class Player : MonoBehaviour {
+	///This class is the dynamic player class, which gets changed as the game is playing
+	/// While it might look complicated its really not. most of these stats are wrapped in 
+	/// getter setter methods, which keep all the variables private, but still let other scripts
+	/// access them. As a bonus, i can also be alerted when a variable is changed via my 
+	/// unity event which activates when the setter is called. The Serialize Field part of 
+	/// it just forces a private variable to be exposed in the unity inspector, so we can 
+	/// see the private variables playout in game by watching the player object. 
 
 	void Start(){
 		ClearInventory ();
+		PlayerRace = NullRace;
+
 
 	}
 
 	public ItemList Inventory;
+	public Race PlayerRace;
+	public Race NullRace;
 
 	public void AddInventoryItem(Item item){
 		Inventory.itemList.Add (item);
@@ -167,10 +200,6 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-//	else if (activeResponceList [count].RequirementType == "Dexterity") {
-//		if (_Player.Dexterity > activeResponceList [count].RequirementChallange) {
-//			button.gameObject.SetActive (true);
-//			count += 1;
 
 	public bool SkillRequireCheck(string challangeType, int challange){
 		if (challangeType == "Strength") {
