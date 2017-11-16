@@ -1,11 +1,13 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour{
 
 	public int gameState;
 	public GameObject _CharacterSelect;
 	public GameObject _Inventory;
+
 	
 
 	void Start(){
@@ -29,6 +31,15 @@ public class GameState : MonoBehaviour{
 		gameState += 1;
 		SetState ();
 		Debug.Log (gameState);
+	}
+
+	public void RestartGame(){
+		SceneManager.LoadScene ("preload");
+
+	}
+
+	public void SaveGame(){
+
 	}
 
 }	

@@ -34,6 +34,7 @@ public class Player : MonoBehaviour {
 	/// unity event which activates when the setter is called. The Serialize Field part of 
 	/// it just forces a private variable to be exposed in the unity inspector, so we can 
 	/// see the private variables playout in game by watching the player object. 
+	public List<Race> RaceList = new List<Race>();
 
 	void Start(){
 		ClearInventory ();
@@ -243,4 +244,30 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+	public void Save(){
+		SaveLoadHandler.SavePlayer (this);
+
+	}
+	public void Load(){
+		PlayerData loadedPlayer = SaveLoadHandler.LoadPlayer ();
+		Name = loadedPlayer.stringstats [0];
+		Gender = loadedPlayer.stringstats [1];
+
+		Health = loadedPlayer.intstats [0];
+		Strength = loadedPlayer.intstats [1];
+		Dexterity = loadedPlayer.intstats [2];
+		Constitution = loadedPlayer.intstats [3];
+		Intellegence = loadedPlayer.intstats [4];
+		Wisdom = loadedPlayer.intstats [5];
+		Charisma = loadedPlayer.intstats [6];
+
+		foreach (Race race in RaceList) {
+			if (loadedPlayer.race == race.RaceName) {
+				PlayerRace = race;
+				break;
+			}
+		}
+
+		//Inventory = loadedPlayer.inventory;
+	}
 }

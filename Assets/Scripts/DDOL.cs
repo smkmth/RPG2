@@ -7,7 +7,7 @@ public class DDOL : MonoBehaviour {
 
 	public void  Awake(){
 		DontDestroyOnLoad (gameObject);
-		SceneManager.LoadScene ("Start");
+		SceneManager.LoadScene ("Ship");
 
 	}
 }
