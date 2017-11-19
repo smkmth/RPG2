@@ -41,12 +41,19 @@ public class PlayerData {
 	public string[] stringstats;
 	public int[] intstats;
 	public string race;
+	public float playerx;
+	public float playery;
+	public float playerz;
 	//public ItemList inventory;
 
 	public PlayerData(Player player){
 		stringstats = new string[2];
 		stringstats [0] = player.Name;
 		stringstats [1] = player.Gender;
+
+		playerx = player.transform.position.x;
+		playery = player.transform.position.y;
+		playerz = player.transform.position.z;
 
 		intstats = new int[7];
 		intstats [0] = player.Health;

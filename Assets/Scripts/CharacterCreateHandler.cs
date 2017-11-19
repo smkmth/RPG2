@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterCreate : MonoBehaviour {
+public class CharacterCreateHandler : MonoBehaviour {
 
 	public InputField NameField;
 	public Dropdown GenderDropdown;

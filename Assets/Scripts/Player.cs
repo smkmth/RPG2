@@ -43,6 +43,8 @@ public class Player : MonoBehaviour {
 
 	}
 
+	public List<GameObject> Party = new List<GameObject> ();
+
 	public ItemList Inventory;
 	public Race PlayerRace;
 	public Race NullRace;
@@ -261,6 +263,8 @@ public class Player : MonoBehaviour {
 		Intellegence = loadedPlayer.intstats [4];
 		Wisdom = loadedPlayer.intstats [5];
 		Charisma = loadedPlayer.intstats [6];
+		Vector3 vectortemp = new Vector3(loadedPlayer.playerx, loadedPlayer.playery, loadedPlayer.playerz);
+		transform.position = vectortemp;
 
 		foreach (Race race in RaceList) {
 			if (loadedPlayer.race == race.RaceName) {
