@@ -55,7 +55,7 @@ public class DialogueHandler : MonoBehaviour {
 	public void RunDialogueStart(GameObject npc){
 		DialogueWindow.SetActive (true);
 		DialogueResponceWindow.SetActive (true);
-		_GameState.gameState = 4;
+		_GameState._GameState = "DialogueMode";
 		NPC npcd = npc.GetComponent<NPC> ();
 		NPCText.text = " " + npcd.StartTopic.SpeakerName + " ";
 
@@ -209,7 +209,7 @@ public class DialogueHandler : MonoBehaviour {
 		activeResponceList.Clear ();
 		DialogueWindow.SetActive(false);
 		DialogueResponceWindow.SetActive(false);
-		_GameState.gameState = 1;
+		_GameState._GameState = "PlayMode";
 
 	}
 }

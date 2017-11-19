@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class GUIHandleing : MonoBehaviour {
-	public GameObject Inventory;
+public class InventoryHandler : MonoBehaviour {
 	public Player _Player;
 	public GameState _GameState;
 	public GameObject InfoPanel;
@@ -14,7 +13,6 @@ public class GUIHandleing : MonoBehaviour {
 	public Text Name;
 	public Text DynamicNameText;
 	public Text Stats;
-	public bool InventoryOn;
 	public Sprite nullSprite;
 	public Item displayItem;
 
@@ -43,7 +41,6 @@ public class GUIHandleing : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		InventoryOn = false;
 		foreach (Transform child in ItemPanel.transform) {
 			ItemSlots.Add (child.gameObject);
 			ItemImage.Add (child.gameObject.GetComponentInChildren<Image> ());
@@ -76,25 +73,7 @@ public class GUIHandleing : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (_GameState.gameState == 1) {
-			if (Input.GetKeyDown (KeyCode.I) && InventoryOn == false) {
-				Inventory.SetActive (true);
-				InventoryOn = true;
-				_GameState.gameState = 2;
-				
-			
-			}
 
-		} else if (_GameState.gameState == 2) {
-
-			if (Input.GetKeyDown (KeyCode.I) && InventoryOn == true) {
-				Inventory.SetActive (false);
-				InventoryOn = false;
-				_GameState.gameState = 1;
-			}
-		}
-	}
 
 	public void RefreshText() {
 		Name.text = _Player.Name;

@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour{
 	}
 
 	void Update(){
-		if (Input.GetMouseButtonDown (0) && _GameState.gameState == 1) {
+		if (Input.GetMouseButtonDown (0) && _GameState._GameState == "PlayMode") {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
 			if (Physics.Raycast (ray, out hit, 100)) {

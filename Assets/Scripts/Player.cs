@@ -246,6 +246,7 @@ public class Player : MonoBehaviour {
 
 	public void Save(){
 		SaveLoadHandler.SavePlayer (this);
+		Debug.Log ("Character Saved!");
 
 	}
 	public void Load(){
@@ -267,6 +268,7 @@ public class Player : MonoBehaviour {
 				break;
 			}
 		}
+		Debug.Log ("Character Loaded!");
 
 		//Inventory = loadedPlayer.inventory;
 	}

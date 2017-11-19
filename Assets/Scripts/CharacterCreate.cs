@@ -20,6 +20,7 @@ public class CharacterCreate : MonoBehaviour {
 	public List<string> PlayableRacesNames = new List<string>();
 
 
+
 	public void GetName(){
 		Debug.Log (NameField.text);
 		_Player.Name = NameField.text;
@@ -59,18 +60,17 @@ public class CharacterCreate : MonoBehaviour {
 		
 	// Use this for initialization
 	void Start () {
-
+		
 		foreach (Race race in PlayableRaces) {
 			PlayableRacesNames.Add (race.RaceName);
 		}
 		RaceDropDdown.AddOptions (PlayableRacesNames);
+
+
 		
 		
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }
