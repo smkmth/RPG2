@@ -30,6 +30,7 @@ public class GameState : MonoBehaviour{
 			}
 		}
 	}
+	//public LevelHandler _LevelHandler;
 
 	public GameObject _CharacterSelect;
 	public GameObject _Inventory;
@@ -38,10 +39,10 @@ public class GameState : MonoBehaviour{
 	public GameObject _DialogueWindow;
 
 
-	
 
 	void Start(){
-		gameState = "CharacterCreateMode";
+		//_LevelHandler = gameObject.GetComponent(LevelHandler);
+		gameState = "PauseMode";
 		GetState ();
 
 	}

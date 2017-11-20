@@ -76,7 +76,9 @@ public class InventoryHandler : MonoBehaviour {
 
 
 	public void RefreshText() {
-		Name.text = _Player.Name;
+		
+		Name.text = _Player.Name + "\n" + _Player.PlayerRace.RaceName;
+
 		Stats.text = "Strength = " + _Player.Strength + "\n" + "Dexterity = " + _Player.Dexterity + "\n" + "Constitution = " +
 		_Player.Constitution + "\n" + "Intellegence = " + _Player.Intellegence + "\n" + "Wisdom = " + _Player.Wisdom + "\n" + "Charisma = " + _Player.Charisma;
 		int count = 0;

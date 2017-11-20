@@ -37,16 +37,39 @@ public class Player : MonoBehaviour {
 	public List<Race> RaceList = new List<Race>();
 
 	void Start(){
-		ClearInventory ();
+//		ClearInventory ();
+//		ClearStats ();
+//		PlayerRace = NullRace;
+
+
+	}
+	public void ClearStats(){
+		Strength = 0;
+		Dexterity = 0;
+		Constitution = 0;
+		Intellegence = 0;
+		Wisdom = 0;
+		Charisma = 0;
 		PlayerRace = NullRace;
-
-
 	}
 
 	public List<GameObject> Party = new List<GameObject> ();
 
 	public ItemList Inventory;
-	public Race PlayerRace;
+	private Race playerRace;
+	public Race PlayerRace {
+		get {
+			return playerRace;
+		}
+		set {
+			playerRace = value;
+			Debug.Log ("Player race is " + PlayerRace);
+			EventManager.TriggerEvent("VariableChanged");
+
+
+		}
+
+	}
 	public Race NullRace;
 
 	public void AddInventoryItem(Item item){
@@ -246,9 +269,13 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+
+
+
 	public void Save(){
 		SaveLoadHandler.SavePlayer (this);
 		Debug.Log ("Character Saved!");
+
 
 	}
 	public void Load(){

@@ -48,6 +48,7 @@ public class CharacterCreateHandler : MonoBehaviour {
 		_Player.Constitution = ConDropdown.value;
 	}
 	public void GetIntellegence(){
+		
 		_Player.Intellegence = IntDropdown.value;
 	}
 	public void GetWisdom(){
