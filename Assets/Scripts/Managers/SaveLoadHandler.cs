@@ -37,20 +37,23 @@ public static class SaveLoadHandler {
 }
 [Serializable]
 public class PlayerData {
-
+	public string currentlevel;
 	public string[] stringstats;
+	public string[] stringmarkers;
 	public int[] intstats;
 	public string race;
 	public float playerx;
 	public float playery;
 	public float playerz;
+	public string currentleveldata;
 	//public ItemList inventory;
 
 	public PlayerData(Player player){
 		stringstats = new string[2];
 		stringstats [0] = player.Name;
 		stringstats [1] = player.Gender;
-
+		currentlevel = player.CurrentLevel ();
+		currentleveldata = player.CurrentLevelData ();
 		playerx = player.transform.position.x;
 		playery = player.transform.position.y;
 		playerz = player.transform.position.z;
@@ -63,7 +66,8 @@ public class PlayerData {
 		intstats [4] = player.Intellegence;
 		intstats [5] = player.Wisdom;
 		intstats [6] = player.Charisma;
-
+		stringmarkers = player.SpecialDialogueMarkers.ToArray();
+		//player.SpecialDialogueMarkers.CopyTo(stringmarkers);
 		race = player.PlayerRace.RaceName;
 		//inventory = player.Inventory;
 

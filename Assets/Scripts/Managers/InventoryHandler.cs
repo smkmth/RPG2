@@ -29,7 +29,7 @@ public class InventoryHandler : MonoBehaviour {
 
 	void OnEnable (){
 		EventManager.StartListening ("VariableChanged", VariableChanged);
-		Debug.Log ("Started Listening ");
+		Debug.Log ("Started Listening to variable changed");
 
 
 
@@ -37,7 +37,7 @@ public class InventoryHandler : MonoBehaviour {
 	}
 	void OnDisable(){
 		EventManager.StopListening ("VariableChanged", VariableChanged);
-		Debug.Log ("stropped listening ");
+		Debug.Log ("stropped listening to variable changed ");
 	
 	}
 
@@ -78,13 +78,10 @@ public class InventoryHandler : MonoBehaviour {
 
 
 	public void RefreshText(){
-		Debug.Log("trying to refresh text");
-		Debug.Log (Name.text);
-		Debug.Log (_Player.Name);
-		Debug.Log ("Race name  " + _Player.PlayerRace);
+		
 		Name.text = _Player.Name + "\n"; 
 		if (_Player.PlayerRace != null) {
-			Name.text +=	_Player.PlayerRace.RaceName;
+			Name.text += _Player.PlayerRace.RaceName;
 		}
 
 		Stats.text = "Strength = " + _Player.Strength + "\n" + "Dexterity = " + _Player.Dexterity + "\n" + "Constitution = " +

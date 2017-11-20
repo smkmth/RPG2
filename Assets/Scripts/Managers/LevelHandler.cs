@@ -7,10 +7,11 @@ using UnityEngine.Events;
 
 public class LevelHandler : MonoBehaviour{
 	public LevelData Ship;
+	public List<LevelData> levels = new List<LevelData> ();
 	//public GameState _GameState;
 	public Player _Player;
 	public GameObject prefab;
-	private LevelData _buildingScene;
+	public LevelData _buildingScene;
 	UnityEvent NewScene;
 
 	void Awake(){
@@ -25,6 +26,20 @@ public class LevelHandler : MonoBehaviour{
 	}
 	public void QuitGame(){
 		SceneManager.LoadScene ("preload");
+	}
+	public void LoadGame (string LevelName, string LevelData)
+	{
+		
+		foreach (LevelData level  in levels) {
+			if (level.LevelName == LevelData) {
+				_buildingScene = level;
+				break;
+			} else {
+				Debug.Log ("Error, leveldata not found, you probably didnt add the level data foir this level to the list - bad times");
+			}
+		}
+		SceneManager.LoadScene (LevelName);
+
 	}
 
 

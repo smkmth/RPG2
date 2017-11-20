@@ -99,8 +99,14 @@ public class DialogueHandler : MonoBehaviour {
 		NPCText.text += "\n";
 		NPCText.text += " " + _Player.Name + " ";
 		NPCText.text += activeResponceList [0].responce;
-
-		PlayNextResponce (activeResponceList [0].NextDialogue);
+		if (activeResponceList [0].SpecialMarker != null) {
+			_Player.SpecialDialogueMarkers.Add (activeResponceList [0].SpecialMarker);
+		}
+		if (activeResponceList [0].NextDialogue != null) {
+			PlayNextResponce (activeResponceList [0].NextDialogue);
+		} else {
+			QuitDialogue ();
+		}
 		
 	}
 	public void Option1(){
@@ -108,15 +114,22 @@ public class DialogueHandler : MonoBehaviour {
 		NPCText.text += " " + _Player.Name + " ";
 		NPCText.text += activeResponceList [1].responce;
 
-		PlayNextResponce (activeResponceList [1].NextDialogue);
-
+		if (activeResponceList [1].NextDialogue != null) {
+			PlayNextResponce (activeResponceList [1].NextDialogue);
+		} else {
+			QuitDialogue ();
+		}
 	}
 	public void Option2(){
 		NPCText.text += "\n";
 		NPCText.text += " " + _Player.Name + " ";
 		NPCText.text += activeResponceList [2].responce;
 
-		PlayNextResponce (activeResponceList [2].NextDialogue);
+		if (activeResponceList [2].NextDialogue != null) {
+			PlayNextResponce (activeResponceList [2].NextDialogue);
+		} else {
+			QuitDialogue ();
+		}
 
 	}
 	public void Option3(){
@@ -124,7 +137,11 @@ public class DialogueHandler : MonoBehaviour {
 		NPCText.text += " " + _Player.Name + " ";
 		NPCText.text += activeResponceList [3].responce;
 
-		PlayNextResponce (activeResponceList [3].NextDialogue);
+		if (activeResponceList [3].NextDialogue != null) {
+			PlayNextResponce (activeResponceList [3].NextDialogue);
+		} else {
+			QuitDialogue ();
+		}
 
 	}
 	public void Option4(){
@@ -132,23 +149,33 @@ public class DialogueHandler : MonoBehaviour {
 		NPCText.text += " " + _Player.Name + " ";
 		NPCText.text += activeResponceList [4].responce;
 
-		PlayNextResponce (activeResponceList [4].NextDialogue);
-
+		if (activeResponceList [4].NextDialogue != null) {
+			PlayNextResponce (activeResponceList [4].NextDialogue);
+		} else {
+			QuitDialogue ();
+		}
 	}
 	public void Option5(){
 		NPCText.text += "\n";
 		NPCText.text += " " + _Player.Name + " ";
 		NPCText.text += activeResponceList [5].responce;
 
-		PlayNextResponce (activeResponceList [5].NextDialogue);
-
+		if (activeResponceList [5].NextDialogue != null) {
+			PlayNextResponce (activeResponceList [5].NextDialogue);
+		} else {
+			QuitDialogue ();
+		}
 	}
 	public void Option6(){
 		NPCText.text += "\n";
 		NPCText.text += " " + _Player.Name + " ";
 		NPCText.text += activeResponceList [6].responce;
 
-		PlayNextResponce (activeResponceList[6].NextDialogue);
+		if (activeResponceList [1].NextDialogue != null) {
+			PlayNextResponce (activeResponceList [1].NextDialogue);
+		} else {
+			QuitDialogue ();
+		}
 
 	}
 	public void Option7(){
@@ -156,7 +183,11 @@ public class DialogueHandler : MonoBehaviour {
 		NPCText.text += " " + _Player.Name + " ";
 		NPCText.text += activeResponceList [7].responce;
 
-		PlayNextResponce (activeResponceList [7].NextDialogue);
+		if (activeResponceList [1].NextDialogue != null) {
+			PlayNextResponce (activeResponceList [1].NextDialogue);
+		} else {
+			QuitDialogue ();
+		}
 
 	}
 	public void Option8(){
@@ -164,7 +195,11 @@ public class DialogueHandler : MonoBehaviour {
 		NPCText.text += " " + _Player.Name + " ";
 		NPCText.text += activeResponceList [8].responce;
 
-		PlayNextResponce (activeResponceList [8].NextDialogue);
+		if (activeResponceList [1].NextDialogue != null) {
+			PlayNextResponce (activeResponceList [1].NextDialogue);
+		} else {
+			QuitDialogue ();
+		}
 
 	}
 	public void Option9(){
@@ -174,7 +209,7 @@ public class DialogueHandler : MonoBehaviour {
 	public void PlayNextResponce(Topic dialogue){
 		NPCText.text += "\n";
 		NPCText.text += " " + dialogue.SpeakerName + " ";
-	
+			
 		Debug.Log (dialogue.Dialouge);
 		NPCText.text += dialogue.Dialouge;
 		activeResponceList.Clear ();

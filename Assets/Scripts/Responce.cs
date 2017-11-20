@@ -6,10 +6,13 @@ using UnityEngine;
 public class Responce : ScriptableObject {
 
 	public string ResponceName;
-	public string SpeakerName;
 	public Topic NextDialogue;
 	public string responce;
 	public bool Requirement;
 	public int RequirementChallange;
 	public string RequirementType;
+	public string SpecialMarker;
+
+
+
 }

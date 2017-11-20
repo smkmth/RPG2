@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Variables:
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour {
 	/// it just forces a private variable to be exposed in the unity inspector, so we can 
 	/// see the private variables playout in game by watching the player object. 
 	public List<Race> RaceList = new List<Race>();
+	public LevelHandler _LevelHandler;
 
 	void Start(){
 		ClearInventory ();
@@ -42,6 +44,14 @@ public class Player : MonoBehaviour {
 
 
 	}
+	public string CurrentLevel() {
+		Scene scene = SceneManager.GetActiveScene();
+		return scene.name;
+	}
+	public string CurrentLevelData() {
+		return _LevelHandler._buildingScene.LevelName;
+	}
+
 	public void ClearStats(){
 		Strength = 0;
 		Dexterity = 0;
@@ -53,6 +63,7 @@ public class Player : MonoBehaviour {
 	}
 
 	public List<GameObject> Party = new List<GameObject> ();
+	public List<string> SpecialDialogueMarkers = new List<string> ();
 
 	public ItemList Inventory;
 	private Race playerRace;
@@ -273,12 +284,14 @@ public class Player : MonoBehaviour {
 
 	public void Save(){
 		SaveLoadHandler.SavePlayer (this);
+
 		Debug.Log ("Character Saved!");
 
 
 	}
 	public void Load(){
 		PlayerData loadedPlayer = SaveLoadHandler.LoadPlayer ();
+		_LevelHandler.LoadGame (loadedPlayer.currentlevel, loadedPlayer.currentleveldata);
 		Name = loadedPlayer.stringstats [0];
 		Gender = loadedPlayer.stringstats [1];
 
@@ -291,6 +304,8 @@ public class Player : MonoBehaviour {
 		Charisma = loadedPlayer.intstats [6];
 		Vector3 vectortemp = new Vector3(loadedPlayer.playerx, loadedPlayer.playery, loadedPlayer.playerz);
 		transform.position = vectortemp;
+		SpecialDialogueMarkers.AddRange (loadedPlayer.stringmarkers);
+		
 
 		foreach (Race race in RaceList) {
 			if (loadedPlayer.race == race.RaceName) {

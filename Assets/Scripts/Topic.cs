@@ -12,6 +12,8 @@ public class Topic : ScriptableObject {
 
 	public List<Responce> responces = new List<Responce> ();
 
+	public string SpecialMarker;
+
 	
 
 }
