@@ -291,7 +291,7 @@ public class Player : MonoBehaviour {
 	}
 	public void Load(){
 		PlayerData loadedPlayer = SaveLoadHandler.LoadPlayer ();
-		_LevelHandler.LoadGame (loadedPlayer.currentlevel, loadedPlayer.currentleveldata);
+		_LevelHandler.LoadLevel (loadedPlayer.currentlevel, loadedPlayer.currentleveldata);
 		Name = loadedPlayer.stringstats [0];
 		Gender = loadedPlayer.stringstats [1];
 

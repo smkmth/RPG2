@@ -27,7 +27,7 @@ public class LevelHandler : MonoBehaviour{
 	public void QuitGame(){
 		SceneManager.LoadScene ("preload");
 	}
-	public void LoadGame (string LevelName, string LevelData)
+	public void LoadLevel (string LevelName, string LevelData)
 	{
 		
 		foreach (LevelData level  in levels) {
@@ -35,12 +35,13 @@ public class LevelHandler : MonoBehaviour{
 				_buildingScene = level;
 				break;
 			} else {
-				Debug.Log ("Error, leveldata not found, you probably didnt add the level data foir this level to the list - bad times");
+				Debug.Log ("Error, leveldata not found, you probably didnt add the level data foir this level to the level data list - bad times");
 			}
 		}
 		SceneManager.LoadScene (LevelName);
 
 	}
+
 
 
 
