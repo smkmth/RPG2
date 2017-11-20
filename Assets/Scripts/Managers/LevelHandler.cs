@@ -10,7 +10,6 @@ public class LevelHandler : MonoBehaviour{
 	//public GameState _GameState;
 	public Player _Player;
 	public GameObject prefab;
-	public GameObject _app;
 	private LevelData _buildingScene;
 	UnityEvent NewScene;
 

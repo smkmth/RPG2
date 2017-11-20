@@ -29,6 +29,7 @@ public class InventoryHandler : MonoBehaviour {
 
 	void OnEnable (){
 		EventManager.StartListening ("VariableChanged", VariableChanged);
+		Debug.Log ("Started Listening ");
 
 
 
@@ -36,11 +37,13 @@ public class InventoryHandler : MonoBehaviour {
 	}
 	void OnDisable(){
 		EventManager.StopListening ("VariableChanged", VariableChanged);
+		Debug.Log ("stropped listening ");
 	
 	}
 
 	// Use this for initialization
 	void Start () {
+		_Player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player>();
 		foreach (Transform child in ItemPanel.transform) {
 			ItemSlots.Add (child.gameObject);
 			ItemImage.Add (child.gameObject.GetComponentInChildren<Image> ());
@@ -72,12 +75,17 @@ public class InventoryHandler : MonoBehaviour {
 		DynamicNameText.text = _Player.Inventory.itemList [buttonindex].itemName;
 	}
 	
-	// Update is called once per frame
 
 
-	public void RefreshText() {
-		
-		Name.text = _Player.Name + "\n" + _Player.PlayerRace.RaceName;
+	public void RefreshText(){
+		Debug.Log("trying to refresh text");
+		Debug.Log (Name.text);
+		Debug.Log (_Player.Name);
+		Debug.Log ("Race name  " + _Player.PlayerRace);
+		Name.text = _Player.Name + "\n"; 
+		if (_Player.PlayerRace != null) {
+			Name.text +=	_Player.PlayerRace.RaceName;
+		}
 
 		Stats.text = "Strength = " + _Player.Strength + "\n" + "Dexterity = " + _Player.Dexterity + "\n" + "Constitution = " +
 		_Player.Constitution + "\n" + "Intellegence = " + _Player.Intellegence + "\n" + "Wisdom = " + _Player.Wisdom + "\n" + "Charisma = " + _Player.Charisma;
@@ -86,11 +94,6 @@ public class InventoryHandler : MonoBehaviour {
 			ItemText [count].text = item.itemName;
 			ItemImage [count].sprite = item.itemImage;
 		}
-
-
-		
-		
-
 
 	}
 }

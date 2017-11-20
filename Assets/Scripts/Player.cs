@@ -37,9 +37,8 @@ public class Player : MonoBehaviour {
 	public List<Race> RaceList = new List<Race>();
 
 	void Start(){
-//		ClearInventory ();
-//		ClearStats ();
-//		PlayerRace = NullRace;
+		ClearInventory ();
+		ClearStats ();
 
 
 	}
