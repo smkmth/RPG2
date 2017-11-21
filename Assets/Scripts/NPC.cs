@@ -9,6 +9,8 @@ public class NPC : MonoBehaviour {
 	public DialogueHandler _Dialogue;
 	public List<Topic> SpecialTopics = new List<Topic> ();
 	public Player _Player;
+	
+
 
 	public void Start(){
 		_Player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player>();

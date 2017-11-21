@@ -78,7 +78,13 @@ public class DialogueHandler : MonoBehaviour {
 		NPC npcd = npc.GetComponent<NPC> ();
 
 		//print text
-		NPCText.text = " " + npcd.StartTopic.SpeakerName + " ";			//get speaking npcs name, leave a space before and after
+		if (npcd.StartTopic.Description != null) {
+			//NPCText.fontStyle = FontStyle.Italic;
+			NPCText.text = "<i>" + npcd.StartTopic.Description + "</i> \n";
+			//NPCText.fontStyle = FontStyle.Normal;
+
+		}
+		NPCText.text += " " + npcd.StartTopic.SpeakerName + ": ";			//get speaking npcs name, leave a space before and after
 		NPCText.text += npcd.StartTopic.Dialouge;						//print the dialogue for the npc
 
 		//add special marker for first interaction
@@ -254,8 +260,16 @@ public class DialogueHandler : MonoBehaviour {
 	}
 
 	public void PlayNextResponce(Topic dialogue){
+		if (dialogue.Description != null) {
+			NPCText.fontStyle = FontStyle.Italic;
+			NPCText.text =  dialogue.Description + "\n";
+		
+		}
+
 		NPCText.text += "\n";
-		NPCText.text += " " + dialogue.SpeakerName + " ";
+		NPCText.text += "\n";
+		NPCText.fontStyle = FontStyle.Normal;
+		NPCText.text += " " + dialogue.SpeakerName + ": ";
 			
 		Debug.Log (dialogue.Dialouge);
 		NPCText.text += dialogue.Dialouge;
