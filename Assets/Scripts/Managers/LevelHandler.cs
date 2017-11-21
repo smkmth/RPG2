@@ -6,11 +6,10 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 
 public class LevelHandler : MonoBehaviour{
-	public LevelData Ship;
+
 	public List<LevelData> levels = new List<LevelData> ();
 	//public GameState _GameState;
 	public Player _Player;
-	public GameObject prefab;
 	public LevelData _buildingScene;
 	UnityEvent NewScene;
 
@@ -20,9 +19,7 @@ public class LevelHandler : MonoBehaviour{
 	
 	public void StartNewGame(){
 		
-		SceneManager.LoadScene ("Ship");
-		_buildingScene = Ship;
-		//_GameState.ChangeState ("PauseMode");
+		LoadLevel ("Ship", "Ship");
 	}
 	public void QuitGame(){
 		SceneManager.LoadScene ("preload");
@@ -39,6 +36,7 @@ public class LevelHandler : MonoBehaviour{
 			}
 		}
 		SceneManager.LoadScene (LevelName);
+		_Player.gameObject.transform.position = _buildingScene.playerEntrance;
 
 	}
 

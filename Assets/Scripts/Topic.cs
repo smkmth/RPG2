@@ -11,7 +11,9 @@ public class Topic : ScriptableObject {
 	public string Dialouge;
 
 	public List<Responce> responces = new List<Responce> ();
+	//public List<Responce> specialresponces = new List<Responce> ();
 
+	
 	public string SpecialMarker;
 
 	

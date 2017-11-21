@@ -11,6 +11,8 @@ public class Responce : ScriptableObject {
 	public bool Requirement;
 	public int RequirementChallange;
 	public string RequirementType;
+	public bool SRequirement;
+	public string SpecialRequirement;
 	public string SpecialMarker;
 
 

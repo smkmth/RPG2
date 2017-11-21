@@ -14,7 +14,6 @@ public class LevelData : ScriptableObject{
 	public List<Item> items = new List<Item> ();
 	public List<Vector3> itemLocation = new List<Vector3>();
 
-	public Vector3 PlayerPosition;
-
+	public Vector3 playerEntrance; 
 
 }

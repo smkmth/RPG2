@@ -7,14 +7,23 @@ public class NPC : MonoBehaviour {
 	public GameObject InteractionCube;
 	public Topic StartTopic;
 	public DialogueHandler _Dialogue;
+	public List<Topic> SpecialTopics = new List<Topic> ();
+	public Player _Player;
+
+	public void Start(){
+		_Player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player>();
+	}
 
 
 
 	public void TalkToThisNPC(){
 		_Dialogue = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<DialogueHandler> ();
-
-		Debug.Log("The npc is talking");
-	
+		foreach (Topic specialtopic in SpecialTopics) {
+			if (_Player.SpecialDialogueMarkers.Contains (specialtopic.DialogueName)) {
+				StartTopic = specialtopic;
+				Debug.Log("specaial topic " + specialtopic.DialogueName);
+			}
+		}
 		_Dialogue.RunDialogueStart (gameObject);
 
 	}
