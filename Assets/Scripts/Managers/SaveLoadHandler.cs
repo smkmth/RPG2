@@ -60,11 +60,11 @@ public class PlayerData {
 
 		intstats = new int[7];
 		intstats [0] = player.Health;
-		intstats [1] = player.Strength;
-		intstats [2] = player.Dexterity;
-		intstats [3] = player.Constitution;
-		intstats [4] = player.Intellegence;
-		intstats [5] = player.Wisdom;
+		intstats [1] = player.Combat;
+		intstats [2] = player.Physical;
+		intstats [3] = player.Engineering;
+		intstats [4] = player.Science;
+		intstats [5] = player.Subtle;
 		intstats [6] = player.Charisma;
 		stringmarkers = player.SpecialDialogueMarkers.ToArray();
 		//player.SpecialDialogueMarkers.CopyTo(stringmarkers);

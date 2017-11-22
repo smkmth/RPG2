@@ -74,83 +74,85 @@ public class NPC : MonoBehaviour {
 	}
 
 	[SerializeField]
-	private int strength;
-	public int Strength{
+	private int physical;
+	public int Physical{
 		get {
-			return strength;
+			return physical;
 		}
 		set {
-			strength = value;
-			if (strength != null) {
+			physical = value;
+			if (physical != null) {
 				EventManager.TriggerEvent ("NPCVariableChanged");
-				Debug.Log ("strength changed to " + value);
+				Debug.Log ("physical changed to " + value);
 
 			}
 		}
 	}
 
 	[SerializeField]
-	private int dexterity;
-	public int Dexterity{
+	private int combat;
+	public int Combat{
 		get {
-			return dexterity;
+			return combat;
 		}
 		set {
-			dexterity = value;
-			if (dexterity != null) {
+			combat = value;
+			if (combat != null) {
 				EventManager.TriggerEvent ("NPCVariableChanged");
-				Debug.Log ("dexterity changed to " + value);
+				Debug.Log ("combat changed to " + value);
 
 			}
 		}
 	}
 
 	[SerializeField]
-	private int constitution;
-	public int Constitution {
+	private int engineering;
+	public int Engineering {
 		get {
-			return constitution;
+			return engineering;
 		}
 		set {
-			constitution = value;
-			if (constitution != null) {
+			engineering = value;
+			if (engineering != null) {
 				EventManager.TriggerEvent ("NPCVariableChanged");
-				Debug.Log ("constitution changed to " + value);
+				Debug.Log ("engineering changed to " + value);
 
 			}
 		}
 	}
 
 	[SerializeField]
-	private int intellegence;
-	public int Intellegence {
+	private int science;
+	public int Science {
 		get {
-			return intellegence;
+			return science;
 		}
 		set {
-			intellegence = value;
-			if (Intellegence != null) {
+			science = value;
+			if (Science != null) {
 				EventManager.TriggerEvent ("NPCVariableChanged");
-				Debug.Log ("intellegence changed to " + value);
+				Debug.Log ("science changed to " + value);
 
 			}
 		}
 	}
 
 	[SerializeField]
-	private int wisdom;
-	public int Wisdom {
+	private int subtle;
+	public int Subtle {
 		get {
-			return wisdom;
+			return subtle;
 		}
 		set {
-			wisdom = value;
-			if (wisdom != null) {
+			subtle = value;
+			if (subtle != null) {
 				EventManager.TriggerEvent ("NPCVariableChanged");
-				Debug.Log ("Wisdom changed to " + value);
+				Debug.Log ("Subtle changed to " + value);
 			}
 		}
 	}
+
+
 
 	[SerializeField]
 	private int charisma;

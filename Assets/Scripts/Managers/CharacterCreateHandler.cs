@@ -9,11 +9,11 @@ public class CharacterCreateHandler : MonoBehaviour {
 	public Dropdown GenderDropdown;
 	public Player _Player;
 	public GameState _GameState;
-	public Dropdown StrDropdown;
-	public Dropdown DexDropdown;
-	public Dropdown ConDropdown;
-	public Dropdown IntDropdown;
-	public Dropdown WisDropdown;
+	public Dropdown ComDropdown;
+	public Dropdown PhysDropdown;
+	public Dropdown EngiDropdown;
+	public Dropdown SciDropdown;
+	public Dropdown SubtDropdown;
 	public Dropdown ChaDropdown;
 	public Dropdown RaceDropDdown;
 	public List<Race> PlayableRaces = new List<Race> ();
@@ -35,24 +35,24 @@ public class CharacterCreateHandler : MonoBehaviour {
 		_Player.PlayerRace = PlayableRaces [RaceDropDdown.value];
 	}
 
-	public void GetStrength(){
-		_Player.Strength = StrDropdown.value;
-		Debug.Log (StrDropdown.value);
-		Debug.Log (_Player.Strength);
+	public void GetCombat(){
+		_Player.Combat = ComDropdown.value;
+		Debug.Log (ComDropdown.value);
+		Debug.Log (_Player.Combat);
 	}
-	public void GetDexterity(){
-		_Player.Dexterity = DexDropdown.value;
+	public void GetPhysical(){
+		_Player.Physical = PhysDropdown.value;
 
 	}
-	public void GetConstitution(){
-		_Player.Constitution = ConDropdown.value;
+	public void GetEngineering(){
+		_Player.Engineering = EngiDropdown.value;
 	}
-	public void GetIntellegence(){
+	public void GetScience(){
 		
-		_Player.Intellegence = IntDropdown.value;
+		_Player.Science = SciDropdown.value;
 	}
-	public void GetWisdom(){
-		_Player.Wisdom = WisDropdown.value;
+	public void GetSubtle(){
+		_Player.Subtle = SubtDropdown.value;
 	}
 	public void GetCharisma(){
 		_Player.Charisma = ChaDropdown.value;

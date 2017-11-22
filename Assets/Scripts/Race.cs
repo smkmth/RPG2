@@ -12,12 +12,13 @@ public class Race : ScriptableObject {
 
 	public List<SpecialAbility> RacialAbilities = new List<SpecialAbility>();
 
-	public int StrBonus;
-	public int DexBonus;
-	public int ConBonus;
-	public int IntBonus;
-	public int WisBonus;
-	public int ChaBonus;
+	public int CombatBonus;
+	public int PhysicalBonus;
+	public int EngineeringBonus;
+	public int ScienceBonus;
+	public int SubtleBonus;
+	public int CharismaBonus;
+
 
 
 

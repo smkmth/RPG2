@@ -9,10 +9,10 @@ using UnityEngine.SceneManagement;
 /// string Name;
 /// string Gender;
 /// int Health;
-/// int Strength;
-/// int Dexterity;
-/// int Constitution;
-/// int Wisdom;
+/// int Physical;
+/// int Combat;
+/// int Engineering;
+/// int Subtle;
 /// int Charisma;
 /// ItemList Inventory;
 /// Race PlayerRace;
@@ -53,12 +53,12 @@ public class Player : MonoBehaviour {
 	}
 
 	public void ClearStats(){
-		Strength = 0;
-		Dexterity = 0;
-		Constitution = 0;
-		Intellegence = 0;
-		Wisdom = 0;
+		Physical = 0;
+		Combat = 0;
+		Engineering = 0;
+		Science = 0;
 		Charisma = 0;
+		Subtle = 0;
 		PlayerRace = NullRace;
 	}
 
@@ -142,80 +142,80 @@ public class Player : MonoBehaviour {
 	}
 
 	[SerializeField]
-	private int strength;
-	public int Strength{
+	private int physical;
+	public int Physical{
 		get {
-			return strength;
+			return physical;
 		}
 		set {
-			strength = value;
-			if (strength != null) {
+			physical = value;
+			if (physical != null) {
 				EventManager.TriggerEvent ("VariableChanged");
-				Debug.Log ("strength changed to " + value);
+				Debug.Log ("physical changed to " + value);
 
 			}
 		}
 	}
 
 	[SerializeField]
-	private int dexterity;
-	public int Dexterity{
+	private int combat;
+	public int Combat{
 		get {
-			return dexterity;
+			return combat;
 		}
 		set {
-			dexterity = value;
-			if (dexterity != null) {
+			combat = value;
+			if (combat != null) {
 				EventManager.TriggerEvent ("VariableChanged");
-				Debug.Log ("dexterity changed to " + value);
+				Debug.Log ("combat changed to " + value);
 
 			}
 		}
 	}
 
 	[SerializeField]
-	private int constitution;
-	public int Constitution {
+	private int engineering;
+	public int Engineering {
 		get {
-			return constitution;
+			return engineering;
 		}
 		set {
-			constitution = value;
-			if (constitution != null) {
+			engineering = value;
+			if (engineering != null) {
 				EventManager.TriggerEvent ("VariableChanged");
-				Debug.Log ("constitution changed to " + value);
+				Debug.Log ("engineering changed to " + value);
 
 			}
 		}
 	}
 
 	[SerializeField]
-	private int intellegence;
-	public int Intellegence {
+	private int science;
+	public int Science {
 		get {
-			return intellegence;
+			return science;
 		}
 		set {
-			intellegence = value;
-			if (Intellegence != null) {
+			science = value;
+			if (Science != null) {
 				EventManager.TriggerEvent ("VariableChanged");
-				Debug.Log ("intellegence changed to " + value);
+				Debug.Log ("science changed to " + value);
 
 			}
 		}
 	}
 
 	[SerializeField]
-	private int wisdom;
-	public int Wisdom {
+	private int subtle;
+	public int Subtle {
 		get {
-			return wisdom;
+			return subtle;
 		}
 		set {
-			wisdom = value;
-			if (wisdom != null) {
+			subtle = value;
+			if (subtle != null) {
 				EventManager.TriggerEvent ("VariableChanged");
-				Debug.Log ("Wisdom changed to " + value);
+				Debug.Log ("Subtle changed to " + value);
 			}
 		}
 	}
@@ -238,32 +238,32 @@ public class Player : MonoBehaviour {
 
 
 	public bool SkillRequireCheck(string challangeType, int challange){
-		if (challangeType == "Strength") {
-			if (Strength > challange) {
+		if (challangeType == "Physical") {
+			if (Physical > challange) {
 				return true;
 			} else {
 				return false;
 			}
-		} else if (challangeType == "Dexterity") {
-			if (Dexterity > challange) {
+		} else if (challangeType == "Combat") {
+			if (Combat > challange) {
 				return true;
 			} else {
 				return false;
 			}
-		} else if (challangeType == "Constitution") {
-			if (Constitution > challange) {
+		} else if (challangeType == "Engineering") {
+			if (Engineering > challange) {
 				return true;
 			} else {
 				return false;
 			}
-		} else if (challangeType == "Intellegence") {
-			if (Intellegence > challange) {
+		} else if (challangeType == "Science") {
+			if (Science > challange) {
 				return true;
 			} else {
 				return false;
 			}
-		} else if (challangeType == "Wisdom") {
-			if (Wisdom > challange) {
+		} else if (challangeType == "Subtle") {
+			if (Subtle > challange) {
 				return true;
 			} else {
 				return false;
@@ -296,11 +296,11 @@ public class Player : MonoBehaviour {
 		Gender = loadedPlayer.stringstats [1];
 
 		Health = loadedPlayer.intstats [0];
-		Strength = loadedPlayer.intstats [1];
-		Dexterity = loadedPlayer.intstats [2];
-		Constitution = loadedPlayer.intstats [3];
-		Intellegence = loadedPlayer.intstats [4];
-		Wisdom = loadedPlayer.intstats [5];
+		Physical = loadedPlayer.intstats [1];
+		Combat = loadedPlayer.intstats [2];
+		Engineering = loadedPlayer.intstats [3];
+		Science = loadedPlayer.intstats [4];
+		Subtle = loadedPlayer.intstats [5];
 		Charisma = loadedPlayer.intstats [6];
 		Vector3 vectortemp = new Vector3(loadedPlayer.playerx, loadedPlayer.playery, loadedPlayer.playerz);
 		transform.position = vectortemp;

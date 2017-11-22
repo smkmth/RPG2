@@ -132,8 +132,8 @@ public class InventoryHandler : MonoBehaviour {
 			Name.text += _Player.PlayerRace.RaceName;
 		}
 
-		Stats.text = "Strength = " + _Player.Strength + "\n" + "Dexterity = " + _Player.Dexterity + "\n" + "Constitution = " +
-		_Player.Constitution + "\n" + "Intellegence = " + _Player.Intellegence + "\n" + "Wisdom = " + _Player.Wisdom + "\n" + "Charisma = " + _Player.Charisma;
+		Stats.text = "Combat = " + _Player.Combat + "\n" + "Engineering = " + _Player.Engineering + "\n" + "Science = " +
+		_Player.Science + "\n" + "Physical = " + _Player.Physical + "\n" + "Subtle = " + _Player.Subtle + "\n" + "Charisma = " + _Player.Charisma;
 		int count = 0;
 		foreach (Item item in _Player.Inventory.itemList) {
 			ItemText [count].text = item.itemName;
