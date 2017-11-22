@@ -19,7 +19,6 @@ public class InventoryHandler : MonoBehaviour {
 	public Text Stats;								//a text which shows the players stats
 	public Sprite nullSprite;						//The null sprite which displays when no items are present
 	public Item displayItem;						//the item which has been selected
-
 	public List<GameObject> ItemSlots = new List<GameObject>();		//an empty list waiting to be filled with the itemslots
 	public List<Image> ItemImage = new List<Image>();				//an empty list waiting to be filled with item images
 	public List<Text> ItemText = new List<Text>();					//an empty list waiting to be fileld with item texts
@@ -78,6 +77,8 @@ public class InventoryHandler : MonoBehaviour {
 	/// of anything at the time. :l
 	/// </summary>
 	void Start () {
+		
+
 		_Player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player>();
 		foreach (Transform child in ItemPanel.transform) {
 			ItemSlots.Add (child.gameObject);
