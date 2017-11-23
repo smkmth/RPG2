@@ -74,17 +74,26 @@ public class CharacterCreateHandler : MonoBehaviour {
 	}
 
 	public void RefreshStats(){
-		for (int i = 0; i < Stats.Count; i++){
-			if (Stats[i] < 0){
-				Stats [i] = 0;
-			}
+
+		if (workingRace != null) { 
+			
+			ComText.text = (workingRace.CombatBonus + comAmount).ToString ();
+			PhysText.text = (workingRace.PhysicalBonus + physAmount).ToString ();
+			EngiText.text = (workingRace.EngineeringBonus + engiAmount).ToString ();
+			SciText.text = (workingRace.ScienceBonus + sciAmount).ToString ();
+			SubtText.text = (workingRace.SubtleBonus + subtAmount).ToString ();
+			ChaText.text = (workingRace.CharismaBonus + chaAmount).ToString ();
+ 
+		} else {
+			ComText.text = comAmount.ToString ();
+			PhysText.text = physAmount.ToString ();
+			EngiText.text = engiAmount.ToString ();
+			SciText.text = sciAmount.ToString ();
+			SubtText.text =  subtAmount.ToString ();
+			ChaText.text = chaAmount.ToString ();
+			
+		
 		}
-		ComText.text = comAmount.ToString ();
-		PhysText.text = physAmount.ToString ();
-		EngiText.text = engiAmount.ToString ();
-		SciText.text = sciAmount.ToString ();
-		SubtText.text = subtAmount.ToString ();
-		ChaText.text = chaAmount.ToString ();
 	}
 
 	public void GetName(){
@@ -104,12 +113,7 @@ public class CharacterCreateHandler : MonoBehaviour {
 	}
 	public void UpdateRace(){
 		workingRace = PlayableRaces [RaceDropdown.value];
-		comAmount += PlayableRaces [RaceDropdown.value].CombatBonus;
-		physAmount += PlayableRaces [RaceDropdown.value].PhysicalBonus;
-		engiAmount += PlayableRaces [RaceDropdown.value].EngineeringBonus;
-		sciAmount += PlayableRaces [RaceDropdown.value].ScienceBonus;
-		subtAmount += PlayableRaces [RaceDropdown.value].SubtleBonus;
-		chaAmount += PlayableRaces [RaceDropdown.value].CharismaBonus;
+	
 		RefreshStats ();
 	
 	}
@@ -232,7 +236,8 @@ public class CharacterCreateHandler : MonoBehaviour {
 	}
 	public void IncreaseCharisma(){
 		if (remainingScoreAmount > 0) {
-			chaAmount += 1; 
+			chaAmount += 1;
+
 			ChaText.text = chaAmount.ToString ();
 			scoreHigher.Invoke ();
 		} else {
@@ -254,6 +259,12 @@ public class CharacterCreateHandler : MonoBehaviour {
 		GetName ();
 		GetGender ();
 		GetRace ();
+		comAmount += PlayableRaces [RaceDropdown.value].CombatBonus;
+		physAmount += PlayableRaces [RaceDropdown.value].PhysicalBonus;
+		engiAmount += PlayableRaces [RaceDropdown.value].EngineeringBonus;
+		sciAmount += PlayableRaces [RaceDropdown.value].ScienceBonus;
+		subtAmount += PlayableRaces [RaceDropdown.value].SubtleBonus;
+		chaAmount += PlayableRaces [RaceDropdown.value].CharismaBonus;
 		GetCombat ();
 		GetPhysical();
 		GetEngineering ();
@@ -266,10 +277,13 @@ public class CharacterCreateHandler : MonoBehaviour {
 	void LowerRemainingScore(){
 		remainingScoreAmount -= 1;
 		RemainingScore.text = remainingScoreAmount.ToString();
+		RefreshStats ();
 	}
 	void HigherRemainingScore(){
 		remainingScoreAmount += 1;
 		RemainingScore.text =  remainingScoreAmount.ToString();
+		RefreshStats ();
+
 	}
 
 

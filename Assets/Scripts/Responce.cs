@@ -6,14 +6,23 @@ using UnityEngine;
 public class Responce : ScriptableObject {
 
 	public string ResponceName;
-	public Topic NextDialogue;
+
+	[TextArea(3,10)]
 	public string responce;
+
 	public bool Requirement;
 	public int RequirementChallange;
 	public string RequirementType;
+
 	public bool SRequirement;
 	public string SpecialRequirement;
+
 	public string SpecialMarker;
+
+	public bool SRace;
+	public string CheckRace;
+
+	public Topic NextDialogue;
 
 
 

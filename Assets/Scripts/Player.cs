@@ -12,6 +12,7 @@ using UnityEngine.SceneManagement;
 /// int Physical;
 /// int Combat;
 /// int Engineering;
+/// int Science
 /// int Subtle;
 /// int Charisma;
 /// ItemList Inventory;

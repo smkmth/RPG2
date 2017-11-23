@@ -109,26 +109,39 @@ public class DialogueHandler : MonoBehaviour {
 					if (_Player.SkillRequireCheck (activeResponceList [count].RequirementType, activeResponceList [count].RequirementChallange)) {		//if so run the skill check method in the player using the requirement type as the requiremnt type
 						Debug.Log (_Player.SkillRequireCheck (activeResponceList [count].RequirementType, activeResponceList [count].RequirementChallange));	//and challange as number to bead
 						button.gameObject.SetActive (true);		//turn on the button if player passes skill check
-						count += 1;			//increase count by one. 
 					} else {
 						button.gameObject.SetActive (false);
 						Debug.Log ("You cannot use the responce " + activeResponceList [count].responce + " without " + activeResponceList [count].RequirementType + activeResponceList [count].RequirementChallange);
-						count += 1;
 					}
 				}
-				if (activeResponceList [count].SRequirement == true) {
+				else if (activeResponceList [count].SRequirement == true) {
+					Debug.Log ("special requirement is ture" + count);
 					if (_Player.SpecialDialogueMarkers.Contains (activeResponceList [count].SpecialRequirement)) {
 						button.gameObject.SetActive (true);
-						count += 1;
 					} else {
 						Debug.Log ("you cannot see this special requirement option " + activeResponceList [count].responce + " without " + activeResponceList [count].SpecialRequirement);
 						button.gameObject.SetActive (false);
 					}
 					
+				}
+				else if (activeResponceList [count].SRace == true) {
+					if (_Player.PlayerRace.RaceName == activeResponceList [count].CheckRace) {
+						button.gameObject.SetActive (true);
+						count += 1;
+
+					} else {
+						button.gameObject.SetActive (false);
+						Debug.Log ("you cannot see this racial requirement option " + activeResponceList [count].responce + " without " + activeResponceList [count].CheckRace);
+
+
+					}
+
+
+
 				} else {
 					button.gameObject.SetActive (true);
-					count += 1;
 				}
+				count += 1;
 			
 							
 
@@ -299,13 +312,31 @@ public class DialogueHandler : MonoBehaviour {
 						Debug.Log ("You cannot use the responce " + activeResponceList [count].responce + "without " + activeResponceList [count].RequirementType + activeResponceList [count].RequirementChallange);
 						count += 1;
 					}
-				} else if (activeResponceList[count].SpecialRequirement != null){
+				} else if (activeResponceList [count].SRequirement == true) {
 					if (_Player.SpecialDialogueMarkers.Contains (activeResponceList [count].SpecialRequirement)) {
 						button.gameObject.SetActive (true);
 						count += 1;
+					} else {
+						Debug.Log ("you cannot see this special requirement option " + activeResponceList [count].responce + " without " + activeResponceList [count].SpecialRequirement);
+						button.gameObject.SetActive (false);
 					}
 
-				}else {
+				} else if (activeResponceList[count].SRace == true){
+					if (_Player.PlayerRace.RaceName == activeResponceList [count].CheckRace) {
+						button.gameObject.SetActive (true);
+						count += 1;
+					
+					} else {
+						button.gameObject.SetActive (false);
+						Debug.Log ("you cannot see this racial requirement option " + activeResponceList [count].responce + " without " + activeResponceList [count].CheckRace);
+
+						count += 1;
+					
+					}
+
+
+
+				} else {
 					button.gameObject.SetActive (true);
 					count += 1;
 				}
