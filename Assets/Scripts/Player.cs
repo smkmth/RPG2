@@ -45,6 +45,9 @@ public class Player : MonoBehaviour {
 	void Start(){
 		ClearInventory ();
 		ClearStats ();
+		PickedUpItems.Clear ();
+
+
 
 
 	}
