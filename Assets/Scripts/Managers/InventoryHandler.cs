@@ -23,7 +23,11 @@ public class InventoryHandler : MonoBehaviour {
 	public List<Image> ItemImage = new List<Image>();				//an empty list waiting to be filled with item images
 	public List<Text> ItemText = new List<Text>();					//an empty list waiting to be fileld with item texts
 	public List<Button> DisplayButton = new List<Button>();			//an empty list waiting to be filled with display buttons.
-	
+	public GameObject SelectedItemButtons;
+	public GlobalItemHandler _GlobalItemHandler;
+	public Button UseButton;
+	public Button EquipButton;
+	public Button DropButton;
 	/// <summary>
 	/// On awake, this sets the unity action variablechanged
 	/// to a new unity action, with the method refreshtext as the 
@@ -78,7 +82,7 @@ public class InventoryHandler : MonoBehaviour {
 	/// </summary>
 	void Start () {
 		
-
+		SelectedItemButtons.SetActive (false);
 		_Player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player>();
 		foreach (Transform child in ItemPanel.transform) {
 			ItemSlots.Add (child.gameObject);
@@ -115,7 +119,16 @@ public class InventoryHandler : MonoBehaviour {
 		displayItem = _Player.Inventory.itemList [buttonindex];
 
 		DynamicNameText.text = _Player.Inventory.itemList [buttonindex].itemName;
+		SelectedItemButtons.SetActive (true);
+
 	}
+
+	public void UseItemButton(){
+		_GlobalItemHandler.UseItem (displayItem.itemName);
+		
+
+	}
+
 	
 
 	/// <summary>

@@ -8,13 +8,14 @@ using UnityEngine.Events;
 public class LevelHandler : MonoBehaviour{
 
 	public List<LevelData> levels = new List<LevelData> ();
-	//public GameState _GameState;
+	public GameState _GameState;
 	public Player _Player;
 	public LevelData _buildingScene;
 	UnityEvent NewScene;
 
 	void Awake(){
 		SceneManager.activeSceneChanged += BuildScene;
+		_GameState = gameObject.GetComponent<GameState> ();
 	}
 	
 	public void StartNewGame(){
@@ -23,6 +24,8 @@ public class LevelHandler : MonoBehaviour{
 	}
 	public void QuitGame(){
 		SceneManager.LoadScene ("preload");
+		_GameState._GameState = "MainMenu";
+
 	}
 	public void LoadLevel (string LevelName, string LevelData)
 	{
@@ -59,6 +62,12 @@ public class LevelHandler : MonoBehaviour{
 			for (var i = 0; i < _buildingScene.Npcs.Count; i++){
 				GameObject gameobject = (GameObject)Instantiate (_buildingScene.Npcs[i], _buildingScene.NpcLocations [i], Quaternion.identity);
 				Debug.Log (gameobject.name + gameobject.transform.position);
+
+			}
+			for (var i = 0; i < _buildingScene.items.Count; i++) {
+				if (!_Player.PickedUpItems.Contains (_buildingScene.items [i].name)) {
+					GameObject gameobject = (GameObject)Instantiate (_buildingScene.items [i], _buildingScene.itemLocation [i], Quaternion.identity);
+				}
 			}
 		}
 	}

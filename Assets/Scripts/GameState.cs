@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 /// <summary>
 /// Game states are - as strings :
@@ -37,12 +38,13 @@ public class GameState : MonoBehaviour{
 	public GameObject _PauseMenu;
 	public GameObject _OnScreenGui;
 	public GameObject _DialogueWindow;
+	public Button _ContinueButton;
 
 
 
 	void Start(){
 		//_LevelHandler = gameObject.GetComponent(LevelHandler);
-		gameState = "PauseMode";
+		gameState = "MainMenu";
 		GetState ();
 
 	}
@@ -71,6 +73,7 @@ public class GameState : MonoBehaviour{
 			_OnScreenGui.SetActive (false);
 			_PauseMenu.SetActive (true);
 			_DialogueWindow.SetActive (false);
+			_ContinueButton.gameObject.SetActive (true);
 
 			Time.timeScale = 0;
 			
@@ -89,6 +92,16 @@ public class GameState : MonoBehaviour{
 			_OnScreenGui.SetActive (false);
 			_PauseMenu.SetActive (false);
 			_DialogueWindow.SetActive (false);
+
+			Time.timeScale = 0;
+
+		} else if (_GameState == "MainMenu") {
+			_CharacterSelect.SetActive (false);
+			_Inventory.SetActive (false);
+			_OnScreenGui.SetActive (false);
+			_PauseMenu.SetActive (true);
+			_DialogueWindow.SetActive (false);
+			_ContinueButton.gameObject.SetActive (false);
 
 			Time.timeScale = 0;
 

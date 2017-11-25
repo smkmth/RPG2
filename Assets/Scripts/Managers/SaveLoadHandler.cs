@@ -46,6 +46,8 @@ public class PlayerData {
 	public float playery;
 	public float playerz;
 	public string currentleveldata;
+	public string[] inventorystring;
+	public string[] pickedupitems;
 	//public ItemList inventory;
 
 	public PlayerData(Player player){
@@ -67,9 +69,11 @@ public class PlayerData {
 		intstats [5] = player.Subtle;
 		intstats [6] = player.Charisma;
 		stringmarkers = player.SpecialDialogueMarkers.ToArray();
+		pickedupitems = player.PickedUpItems.ToArray ();
 		//player.SpecialDialogueMarkers.CopyTo(stringmarkers);
 		race = player.PlayerRace.RaceName;
 		//inventory = player.Inventory;
+		inventorystring = player.Inventory.SaveItemList();
 
 	}
 

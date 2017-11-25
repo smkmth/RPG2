@@ -12,6 +12,7 @@ public class ItemHandler : MonoBehaviour{
 
 	public void PickUpItem(){
 		_Player.AddInventoryItem (item);
+		_Player.PickedUpItems.Add (gameObject.name);
 		Destroy (gameObject);
 
 

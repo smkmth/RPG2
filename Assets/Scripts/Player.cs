@@ -38,6 +38,9 @@ public class Player : MonoBehaviour {
 	/// see the private variables playout in game by watching the player object. 
 	public List<Race> RaceList = new List<Race>();
 	public LevelHandler _LevelHandler;
+	public GlobalItemHandler _GlobalItemHandler;
+
+	public List<string> PickedUpItems = new List<string>();
 
 	void Start(){
 		ClearInventory ();
@@ -306,6 +309,10 @@ public class Player : MonoBehaviour {
 		Vector3 vectortemp = new Vector3(loadedPlayer.playerx, loadedPlayer.playery, loadedPlayer.playerz);
 		transform.position = vectortemp;
 		SpecialDialogueMarkers.AddRange (loadedPlayer.stringmarkers);
+		PickedUpItems.AddRange (loadedPlayer.pickedupitems);
+		Inventory = _GlobalItemHandler.LoadItems (loadedPlayer.inventorystring);
+
+
 		
 
 		foreach (Race race in RaceList) {

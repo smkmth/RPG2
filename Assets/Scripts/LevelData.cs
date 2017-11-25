@@ -11,9 +11,9 @@ public class LevelData : ScriptableObject{
 	public List<GameObject> Npcs = new List<GameObject>();
 	public List<Vector3> NpcLocations = new List<Vector3> ();
 
-	public List<Item> items = new List<Item> ();
+	public List<GameObject> items = new List<GameObject> ();
 	public List<Vector3> itemLocation = new List<Vector3>();
-
 	public Vector3 playerEntrance; 
+
 
 }
