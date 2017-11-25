@@ -65,8 +65,11 @@ public class LevelHandler : MonoBehaviour{
 
 			}
 			for (var i = 0; i < _buildingScene.items.Count; i++) {
-				if (!_Player.PickedUpItems.Contains (_buildingScene.items [i].name)) {
+				if (!_Player.PickedUpItems.Contains (_buildingScene.items [i].name + "(Clone)")) {
+					Debug.Log ("items in the scene");
 					GameObject gameobject = (GameObject)Instantiate (_buildingScene.items [i], _buildingScene.itemLocation [i], Quaternion.identity);
+				} else {
+					Debug.Log ("items not in the scene" + _buildingScene.items [i] + _buildingScene.itemLocation [i]);
 				}
 			}
 		}

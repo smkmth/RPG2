@@ -115,11 +115,13 @@ public class InventoryHandler : MonoBehaviour {
 	/// </summary>
 	/// <param name="buttonindex">Buttonindex.</param>
 	public void DisplayItem(int buttonindex){
-		Debug.Log (_Player.Inventory.itemList [buttonindex]);
-		displayItem = _Player.Inventory.itemList [buttonindex];
+		if (_Player.Inventory.itemList [buttonindex] != null) {
+			Debug.Log (_Player.Inventory.itemList [buttonindex]);
+			displayItem = _Player.Inventory.itemList [buttonindex];
 
-		DynamicNameText.text = _Player.Inventory.itemList [buttonindex].itemName;
-		SelectedItemButtons.SetActive (true);
+			DynamicNameText.text = _Player.Inventory.itemList [buttonindex].itemName;
+			SelectedItemButtons.SetActive (true);
+		}
 
 	}
 
@@ -150,8 +152,13 @@ public class InventoryHandler : MonoBehaviour {
 		_Player.Science + "\n" + "Physical = " + _Player.Physical + "\n" + "Subtle = " + _Player.Subtle + "\n" + "Charisma = " + _Player.Charisma;
 		int count = 0;
 		foreach (Item item in _Player.Inventory.itemList) {
+			if (count > _Player.Inventory.itemList.Count) {
+				break;
+			}
+				
 			ItemText [count].text = item.itemName;
 			ItemImage [count].sprite = item.itemImage;
+			count += 1;
 		}
 
 	}

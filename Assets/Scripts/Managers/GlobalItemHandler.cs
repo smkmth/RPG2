@@ -13,6 +13,7 @@ public class GlobalItemHandler : MonoBehaviour{
 
 	void Start(){
 		foreach (Item item in GlobalItemList.itemList) {
+
 			if (item.itemName != null || item.itemName != " ") {
 				GlobalItemString.Add (item.itemName);
 			} else {
@@ -27,13 +28,13 @@ public class GlobalItemHandler : MonoBehaviour{
 		Debug.Log ("Trying to use a " + GlobalItemList.itemList [index].itemName);
 	}
 
-	public ItemList LoadItems (string[] itemarray){
+	public Item[] LoadItems (string[] itemarray){
 		foreach (string itemstring in itemarray) {
 			int index = GlobalItemString.IndexOf (itemstring);
 
 			tempitemlist.itemList.Add (GlobalItemList.itemList [index]);
 		}
-		return tempitemlist;
+		return tempitemlist.itemList.ToArray();
 	}
 
 

@@ -310,7 +310,9 @@ public class Player : MonoBehaviour {
 		transform.position = vectortemp;
 		SpecialDialogueMarkers.AddRange (loadedPlayer.stringmarkers);
 		PickedUpItems.AddRange (loadedPlayer.pickedupitems);
-		Inventory = _GlobalItemHandler.LoadItems (loadedPlayer.inventorystring);
+		Inventory.itemList.AddRange(_GlobalItemHandler.LoadItems (loadedPlayer.inventorystring));
+		_GlobalItemHandler.tempitemlist.itemList.Clear ();
+
 
 
 		
