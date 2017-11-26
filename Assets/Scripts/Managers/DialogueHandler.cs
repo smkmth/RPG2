@@ -104,8 +104,24 @@ public class DialogueHandler : MonoBehaviour {
 				}
 				button.GetComponentInChildren<Text> ().text = npcd.StartTopic.responces [count].responce;		//set the text components of the button to be the responce
 				activeResponceList.Add (npcd.StartTopic.responces [count]);										//add the npc responces to the active responce list			
+				if (activeResponceList [count].SRace == true) {
+					//display the current button if the players race matches the responces race.
+					if (_Player.PlayerRace.RaceName == activeResponceList [count].CheckRace) {
+						button.gameObject.SetActive (true);
 
-				if (activeResponceList [count].Requirement == true) {					//is the requirement bool set?
+
+					} else if (_Player.PlayerRace.RaceName == "-" + activeResponceList [count].CheckRace) {
+						button.gameObject.SetActive (false);
+						Debug.Log ("This race" + activeResponceList [count].CheckRace + "is  specifically excluded from the responce ");
+					}
+
+					else {
+						button.gameObject.SetActive (false);
+						Debug.Log ("you cannot see this racial requirement option " + activeResponceList [count].responce + " without " + activeResponceList [count].CheckRace);
+					}
+
+				}
+				else if (activeResponceList [count].Requirement == true) {					//is the requirement bool set?
 					if (_Player.SkillRequireCheck (activeResponceList [count].RequirementType, activeResponceList [count].RequirementChallange)) {		//if so run the skill check method in the player using the requirement type as the requiremnt type
 						Debug.Log (_Player.SkillRequireCheck (activeResponceList [count].RequirementType, activeResponceList [count].RequirementChallange));	//and challange as number to bead
 						button.gameObject.SetActive (true);		//turn on the button if player passes skill check
@@ -124,21 +140,8 @@ public class DialogueHandler : MonoBehaviour {
 					}
 					
 				}
-				else if (activeResponceList [count].SRace == true) {
-					if (_Player.PlayerRace.RaceName == activeResponceList [count].CheckRace) {
-						button.gameObject.SetActive (true);
-						count += 1;
 
-					} else {
-						button.gameObject.SetActive (false);
-						Debug.Log ("you cannot see this racial requirement option " + activeResponceList [count].responce + " without " + activeResponceList [count].CheckRace);
-
-
-					}
-
-
-
-				} else {
+				else {
 					button.gameObject.SetActive (true);
 				}
 				count += 1;
@@ -237,8 +240,8 @@ public class DialogueHandler : MonoBehaviour {
 		NPCText.text += " " + _Player.Name + " ";
 		NPCText.text += activeResponceList [6].responce;
 
-		if (activeResponceList [1].NextDialogue != null) {
-			PlayNextResponce (activeResponceList [1].NextDialogue);
+		if (activeResponceList [6].NextDialogue != null) {
+			PlayNextResponce (activeResponceList [6].NextDialogue);
 		} else {
 			QuitDialogue ();
 		}
@@ -249,8 +252,8 @@ public class DialogueHandler : MonoBehaviour {
 		NPCText.text += " " + _Player.Name + " ";
 		NPCText.text += activeResponceList [7].responce;
 
-		if (activeResponceList [1].NextDialogue != null) {
-			PlayNextResponce (activeResponceList [1].NextDialogue);
+		if (activeResponceList [7].NextDialogue != null) {
+			PlayNextResponce (activeResponceList [7].NextDialogue);
 		} else {
 			QuitDialogue ();
 		}
@@ -261,8 +264,8 @@ public class DialogueHandler : MonoBehaviour {
 		NPCText.text += " " + _Player.Name + " ";
 		NPCText.text += activeResponceList [8].responce;
 
-		if (activeResponceList [1].NextDialogue != null) {
-			PlayNextResponce (activeResponceList [1].NextDialogue);
+		if (activeResponceList [8].NextDialogue != null) {
+			PlayNextResponce (activeResponceList [8].NextDialogue);
 		} else {
 			QuitDialogue ();
 		}
@@ -274,18 +277,16 @@ public class DialogueHandler : MonoBehaviour {
 
 	public void PlayNextResponce(Topic dialogue){
 		if (dialogue.Description != null) {
-			NPCText.fontStyle = FontStyle.Italic;
-			NPCText.text =  dialogue.Description + "\n";
-		
-		}
+			//NPCText.fontStyle = FontStyle.Italic;
+			NPCText.text = "<i>" + dialogue.Description + "</i> \n";
+			//NPCText.fontStyle = FontStyle.Normal;
 
-		NPCText.text += "\n";
-		NPCText.text += "\n";
-		NPCText.fontStyle = FontStyle.Normal;
-		NPCText.text += " " + dialogue.SpeakerName + ": ";
+		}
+		NPCText.text += " " + dialogue.SpeakerName + ": ";			//get speaking npcs name, leave a space before and after
+		NPCText.text += dialogue.Dialouge;	
 			
 		Debug.Log (dialogue.Dialouge);
-		NPCText.text += dialogue.Dialouge;
+	
 		activeResponceList.Clear ();
 		ClearButtons ();
 		if (dialogue.responces.Count > 0) {
@@ -301,45 +302,47 @@ public class DialogueHandler : MonoBehaviour {
 
 				button.GetComponentInChildren<Text> ().text = dialogue.responces [count].responce;
 				activeResponceList.Add (dialogue.responces [count]);
+				if (activeResponceList [count].SRace == true) {
+					//first check the race cos this is the most important cull
+					if (_Player.PlayerRace.RaceName == activeResponceList [count].CheckRace) {
+						button.gameObject.SetActive (true);
 
-				if (activeResponceList [count].Requirement == true) {
+					} else if (_Player.PlayerRace.RaceName == "-" + activeResponceList [count].CheckRace) {
+						button.gameObject.SetActive (false);
+						Debug.Log ("This race" + activeResponceList [count].CheckRace + "is  specifically excluded from the responce ");
+					} else {
+						button.gameObject.SetActive (false);
+						Debug.Log ("you cannot see this racial requirement option " + activeResponceList [count].responce + " without " + activeResponceList [count].CheckRace);
+
+
+					}
+				}
+				//then check skill requirements
+				else if (activeResponceList [count].Requirement == true) {
 					if (_Player.SkillRequireCheck (activeResponceList [count].RequirementType, activeResponceList [count].RequirementChallange)) {
 						Debug.Log (_Player.SkillRequireCheck (activeResponceList [count].RequirementType, activeResponceList [count].RequirementChallange));
 						button.gameObject.SetActive (true);
-						count += 1;
 					} else {
 						button.gameObject.SetActive (false);
 						Debug.Log ("You cannot use the responce " + activeResponceList [count].responce + "without " + activeResponceList [count].RequirementType + activeResponceList [count].RequirementChallange);
-						count += 1;
 					}
+					//lastly check special requirements
 				} else if (activeResponceList [count].SRequirement == true) {
 					if (_Player.SpecialDialogueMarkers.Contains (activeResponceList [count].SpecialRequirement)) {
 						button.gameObject.SetActive (true);
-						count += 1;
 					} else {
 						Debug.Log ("you cannot see this special requirement option " + activeResponceList [count].responce + " without " + activeResponceList [count].SpecialRequirement);
 						button.gameObject.SetActive (false);
 					}
 
-				} else if (activeResponceList[count].SRace == true){
-					if (_Player.PlayerRace.RaceName == activeResponceList [count].CheckRace) {
-						button.gameObject.SetActive (true);
-						count += 1;
-					
-					} else {
-						button.gameObject.SetActive (false);
-						Debug.Log ("you cannot see this racial requirement option " + activeResponceList [count].responce + " without " + activeResponceList [count].CheckRace);
 
-						count += 1;
-					
-					}
-
-
-
-				} else {
+				} 
+				//if it hasnt be culled, display now.
+				else {
 					button.gameObject.SetActive (true);
-					count += 1;
 				}
+				count += 1;
+
 
 
 
