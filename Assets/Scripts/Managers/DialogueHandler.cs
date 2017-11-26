@@ -112,7 +112,7 @@ public class DialogueHandler : MonoBehaviour {
 
 					} else if (_Player.PlayerRace.RaceName == "-" + activeResponceList [count].CheckRace) {
 						button.gameObject.SetActive (false);
-						Debug.Log ("This race" + activeResponceList [count].CheckRace + "is  specifically excluded from the responce ");
+						Debug.Log ("This race" + "-" + activeResponceList [count].CheckRace + "is  specifically excluded from the responce ");
 					}
 
 					else {
