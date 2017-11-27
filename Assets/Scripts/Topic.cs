@@ -19,7 +19,7 @@ public class Topic : ScriptableObject {
 	public List<Responce> responces = new List<Responce> ();
 	//public List<Responce> specialresponces = new List<Responce> ();
 
-	
+	public bool ContainsSpecialMarker;
 	public string SpecialMarker;
 
 	

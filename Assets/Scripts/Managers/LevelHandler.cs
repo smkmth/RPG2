@@ -20,7 +20,7 @@ public class LevelHandler : MonoBehaviour{
 	
 	public void StartNewGame(){
 		
-		LoadLevel ("Ship", "Ship");
+		LoadLevel ("Bridge", "Start");
 	}
 	public void QuitGame(){
 		SceneManager.LoadScene ("preload");

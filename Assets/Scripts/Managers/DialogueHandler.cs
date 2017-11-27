@@ -78,7 +78,7 @@ public class DialogueHandler : MonoBehaviour {
 		NPC npcd = npc.GetComponent<NPC> ();
 
 		//print text
-		if (npcd.StartTopic.Description != null) {
+		if (npcd.StartTopic.ContainsSpecialMarker) {
 			//NPCText.fontStyle = FontStyle.Italic;
 			NPCText.text = "<i>" + npcd.StartTopic.Description + "</i> \n";
 			//NPCText.fontStyle = FontStyle.Normal;
@@ -286,6 +286,10 @@ public class DialogueHandler : MonoBehaviour {
 		NPCText.text += dialogue.Dialouge;	
 			
 		Debug.Log (dialogue.Dialouge);
+		if (dialogue.ContainsSpecialMarker) { 		// if the responce has a special marker attached
+			_Player.SpecialDialogueMarkers.Add (dialogue.SpecialMarker);																	// we add that to the players special marker list
+		}
+
 	
 		activeResponceList.Clear ();
 		ClearButtons ();
