@@ -38,6 +38,7 @@ public class GameState : MonoBehaviour{
 	public GameObject _PauseMenu;
 	public GameObject _OnScreenGui;
 	public GameObject _DialogueWindow;
+	public GameObject _ShipElevatorGUI;
 	public Button _ContinueButton;
 
 
@@ -56,6 +57,8 @@ public class GameState : MonoBehaviour{
 			_OnScreenGui.SetActive (false);
 			_PauseMenu.SetActive (false);
 			_DialogueWindow.SetActive (false);
+			_ShipElevatorGUI.SetActive (false);		
+
 			Time.timeScale = 0;
 
 		} else if (_GameState == "PlayMode") {
@@ -64,6 +67,8 @@ public class GameState : MonoBehaviour{
 			_Inventory.SetActive (false);
 			_PauseMenu.SetActive (false);
 			_DialogueWindow.SetActive (false);
+			_ShipElevatorGUI.SetActive (false);		
+
 
 			Time.timeScale = 1;
 
@@ -74,6 +79,8 @@ public class GameState : MonoBehaviour{
 			_PauseMenu.SetActive (true);
 			_DialogueWindow.SetActive (false);
 			_ContinueButton.gameObject.SetActive (true);
+			_ShipElevatorGUI.SetActive (false);		
+
 
 			Time.timeScale = 0;
 			
@@ -83,6 +90,8 @@ public class GameState : MonoBehaviour{
 			_OnScreenGui.SetActive (false);
 			_PauseMenu.SetActive (false);
 			_DialogueWindow.SetActive (true);
+			_ShipElevatorGUI.SetActive (false);		
+
 
 			Time.timeScale = 1;
 
@@ -92,6 +101,8 @@ public class GameState : MonoBehaviour{
 			_OnScreenGui.SetActive (false);
 			_PauseMenu.SetActive (false);
 			_DialogueWindow.SetActive (false);
+			_ShipElevatorGUI.SetActive (false);		
+
 
 			Time.timeScale = 0;
 
@@ -102,8 +113,20 @@ public class GameState : MonoBehaviour{
 			_PauseMenu.SetActive (true);
 			_DialogueWindow.SetActive (false);
 			_ContinueButton.gameObject.SetActive (false);
+			_ShipElevatorGUI.SetActive (false);		
+
 
 			Time.timeScale = 0;
+
+		} else if (_GameState == "ElevatorMode") {
+			_ShipElevatorGUI.SetActive (true);		
+			_CharacterSelect.SetActive (false);
+			_Inventory.SetActive (false);
+			_OnScreenGui.SetActive (false);
+			_PauseMenu.SetActive (false);
+			_DialogueWindow.SetActive (false);
+			Time.timeScale = 0;
+
 
 		}
 		

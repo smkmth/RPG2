@@ -21,7 +21,7 @@ public class Movement : MonoBehaviour{
 					agent.SetDestination (hit.point);
 				} else if (hit.transform.tag == "NPC") {
 					NPC targetnpc = hit.transform.gameObject.GetComponent<NPC> ();
-					agent.SetDestination (targetnpc.InteractionCube.transform.position );
+					agent.SetDestination (targetnpc.InteractionCube.transform.position);
 					targetnpc.TalkToThisNPC ();
 				} else if (hit.transform.tag == "Item") {
 					ItemHandler targetitem = hit.transform.gameObject.GetComponent<ItemHandler> ();
@@ -38,7 +38,7 @@ public class Movement : MonoBehaviour{
 							}
 						}
 					}
-				} else if (hit.transform.tag == "Exit") {
+				} else if (hit.transform.tag == "Interactable") {
 					Interactable targetinteraction = hit.transform.gameObject.GetComponent<Interactable> ();
 					agent.SetDestination (targetinteraction.InteractableMaker.transform.position);
 					if (!agent.pathPending) {
@@ -52,9 +52,12 @@ public class Movement : MonoBehaviour{
 						}
 					}
 
-				}
+				
+
+				
 				}
 			}
 		}
 
+	}
 }
