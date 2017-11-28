@@ -12,7 +12,7 @@ public class ElevatorExit : MonoBehaviour {
 	public GameObject _ButtonPrefab;
 	public string ElevatorDescription;
 
-	public List<Text> buttontextlist = new List<Text> ();
+	public List<GameObject> tempbuttonlist = new List<GameObject> ();
 
 	public List<string> levels = new List<string>();
 	public List<string> leveldatas = new List<string>();
@@ -33,6 +33,7 @@ public class ElevatorExit : MonoBehaviour {
 		for (var i = 0; i < levels.Count; i++) {
 
 			GameObject button = Instantiate (_ButtonPrefab);
+			tempbuttonlist.Add (button);
 			button.transform.SetParent (_ShipElevatorGUI.transform, false);
 			button.GetComponentInChildren<Text> ().text = levels [i];
 			int number = i;
@@ -44,11 +45,18 @@ public class ElevatorExit : MonoBehaviour {
 
 	}
 
+	void ClearButtons(){
+		foreach (GameObject button in tempbuttonlist) {
+			Destroy (button);
+		}
+	}
+
 	public void Option(int number){
 		Debug.Log ("level number " + number);
 		_LevelHandler.LoadLevel (levels [number], leveldatas [number]);
 		_ShipElevatorGUI.SetActive (false);
 		_GameState._GameState = "PlayMode";
+		ClearButtons ();
 		//_GameState._CharacterSelectI did as cdie you put the lime in the coconut and throw the can away}}
 	
 
