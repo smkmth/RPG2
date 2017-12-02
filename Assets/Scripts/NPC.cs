@@ -26,8 +26,8 @@ public class NPC : MonoBehaviour {
 				Debug.Log("specaial topic " + specialtopic.DialogueName);
 			}
 		}
-		_Dialogue.RunDialogueStart (gameObject);
-
+		_Dialogue.PlayNextResponce (StartTopic);
+	
 	}
 	[SerializeField]
 	private string name;

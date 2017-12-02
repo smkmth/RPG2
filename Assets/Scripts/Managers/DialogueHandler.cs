@@ -10,17 +10,11 @@ using UnityEngine.UI;
 /// </summary>
 public class DialogueHandler : MonoBehaviour {
 
-	public Text NPCText;				//this is like the console the dialogue is printed to 
-	public Button Responce1;			//so we have a whole bunch of buttons
-	public Button Responce2;			//these buttons are the responces
-	public Button Responce3;
-	public Button Responce4;
-	public Button Responce5;
-	public Button Responce6;
-	public Button Responce7;
-	public Button Responce8;
-	public Button Responce9;
-	public Button Responce10;
+	public Text NPCText;//this is like the console the dialogue is printed to 
+	public GameObject ButtonPrefab;
+	public List<GameObject> tempbuttonlist = new List<GameObject> ();
+	public GameObject _ResponcePanel;
+
 
 	public List<Responce> activeResponceList = new List<Responce>(); 	// an active responce list so we can access responces from allover the script
 	public GameObject DialogueWindow;									// a ref to the window itself incase we need to turn it off
@@ -36,19 +30,9 @@ public class DialogueHandler : MonoBehaviour {
 	/// </summary>
 	void Start(){
 		_Player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player>();
-		DialogueWindow.SetActive (false);
-		DialogueResponceWindow.SetActive (false);
-		responceList.Add (Responce1);
-		responceList.Add (Responce2);
-		responceList.Add (Responce3);
-		responceList.Add (Responce4);
-		responceList.Add (Responce5);
-		responceList.Add (Responce6);
-		responceList.Add (Responce7);
-		responceList.Add (Responce8);
-		responceList.Add (Responce9);
-		responceList.Add (Responce10);
-;
+
+	
+
 		ClearButtons ();
 
 
@@ -59,223 +43,35 @@ public class DialogueHandler : MonoBehaviour {
 	/// we need them. 
 	/// </summary>
 	public void ClearButtons(){
-		foreach (Button button in responceList) {
-			button.gameObject.SetActive (false);
+		foreach (GameObject button in tempbuttonlist) {
+			Destroy (button);
 		}
 	}
 
-	/// <summary>
-	/// this method takes a gameobject representing the npc. it then turns on the 
-	/// dialogue windows, and turns the gamestate to dialogue mode. 
-	/// 
-	/// </summary>
-	/// <param name="npc">Npc.</param>
-	public void RunDialogueStart(GameObject npc){
-		//turning on windows that need to be on - switch game state - get component
-		DialogueWindow.SetActive (true);
-		DialogueResponceWindow.SetActive (true);
-		_GameState._GameState = "DialogueMode";
-		NPC npcd = npc.GetComponent<NPC> ();
-
-		//print text
-		if (npcd.StartTopic.ContainsSpecialMarker) {
-			//NPCText.fontStyle = FontStyle.Italic;
-			NPCText.text = "<i>" + npcd.StartTopic.Description + "</i> \n";
-			//NPCText.fontStyle = FontStyle.Normal;
-
-		}
-		NPCText.text += " " + npcd.StartTopic.SpeakerName + ": ";			//get speaking npcs name, leave a space before and after
-		NPCText.text += npcd.StartTopic.Dialouge;						//print the dialogue for the npc
-
-		//add special marker for first interaction
-		if (npcd.StartTopic.SpecialMarker != null && !_Player.SpecialDialogueMarkers.Contains(npcd.StartTopic.SpecialMarker)) { 		// if the responce has a special marker attached
-			_Player.SpecialDialogueMarkers.Add (npcd.StartTopic.SpecialMarker);																	// we add that to the players special marker list
-		}
-
-		//work out how many responces we need
-		var max = npcd.StartTopic.responces.Count;
-		Debug.Log ("Should be a potential max " + npcd.StartTopic.responces.Count + " Responces in the list - before skill culling and special culling ");
-		var count = 0;													//init the second itterator.
-		if (npcd.StartTopic.responces.Count > 0) {
-			//Actual convo loop.
-			foreach (Button button in responceList) {
-				if (count == max) {											// break out of loop when the count reaches max
-					break;
-				}
-				button.GetComponentInChildren<Text> ().text = npcd.StartTopic.responces [count].responce;		//set the text components of the button to be the responce
-				activeResponceList.Add (npcd.StartTopic.responces [count]);										//add the npc responces to the active responce list			
-				if (activeResponceList [count].SRace == true) {
-					//display the current button if the players race matches the responces race.
-					if (_Player.PlayerRace.RaceName == activeResponceList [count].CheckRace) {
-						button.gameObject.SetActive (true);
-
-
-					} else if (_Player.PlayerRace.RaceName == "-" + activeResponceList [count].CheckRace) {
-						button.gameObject.SetActive (false);
-						Debug.Log ("This race" + "-" + activeResponceList [count].CheckRace + "is  specifically excluded from the responce ");
-					}
-
-					else {
-						button.gameObject.SetActive (false);
-						Debug.Log ("you cannot see this racial requirement option " + activeResponceList [count].responce + " without " + activeResponceList [count].CheckRace);
-					}
-
-				}
-				else if (activeResponceList [count].Requirement == true) {					//is the requirement bool set?
-					if (_Player.SkillRequireCheck (activeResponceList [count].RequirementType, activeResponceList [count].RequirementChallange)) {		//if so run the skill check method in the player using the requirement type as the requiremnt type
-						Debug.Log (_Player.SkillRequireCheck (activeResponceList [count].RequirementType, activeResponceList [count].RequirementChallange));	//and challange as number to bead
-						button.gameObject.SetActive (true);		//turn on the button if player passes skill check
-					} else {
-						button.gameObject.SetActive (false);
-						Debug.Log ("You cannot use the responce " + activeResponceList [count].responce + " without " + activeResponceList [count].RequirementType + activeResponceList [count].RequirementChallange);
-					}
-				}
-				else if (activeResponceList [count].SRequirement == true) {
-					Debug.Log ("special requirement is ture" + count);
-					if (_Player.SpecialDialogueMarkers.Contains (activeResponceList [count].SpecialRequirement)) {
-						button.gameObject.SetActive (true);
-					} else {
-						Debug.Log ("you cannot see this special requirement option " + activeResponceList [count].responce + " without " + activeResponceList [count].SpecialRequirement);
-						button.gameObject.SetActive (false);
-					}
-					
-				}
-
-				else {
-					button.gameObject.SetActive (true);
-				}
-				count += 1;
-			
-							
-
-			}
-		}else {
-				Responce10.gameObject.SetActive (true);
-				Responce10.GetComponentInChildren<Text> ().text = "Cancel";
-			}
-
-			
-
-
-
-	}
 		
-//	if (activeResponceList [count].SpecialMarker != null && !_Player.SpecialDialogueMarkers.Contains(activeResponceList [count].SpecialMarker)) { 		// if the responce has a special marker attached
-//		_Player.SpecialDialogueMarkers.Add (activeResponceList [count].SpecialMarker);																	// we add that to the players special marker list
-//	}
-	public void Option0(){
-		
-		NPCText.text += "\n";
-		NPCText.text += " " + _Player.Name + " ";
-		NPCText.text += activeResponceList [0].responce;
-		if (activeResponceList [0].SpecialMarker != null) {
-			_Player.SpecialDialogueMarkers.Add (activeResponceList [0].SpecialMarker);
-		}
-		if (activeResponceList [0].NextDialogue != null) {
-			PlayNextResponce (activeResponceList [0].NextDialogue);
-		} else {
-			QuitDialogue ();
-		}
-		
-	}
-	public void Option1(){
-		NPCText.text += "\n";
-		NPCText.text += " " + _Player.Name + " ";
-		NPCText.text += activeResponceList [1].responce;
 
-		if (activeResponceList [1].NextDialogue != null) {
-			PlayNextResponce (activeResponceList [1].NextDialogue);
-		} else {
-			QuitDialogue ();
-		}
-	}
-	public void Option2(){
+	public void Option(int number){
 		NPCText.text += "\n";
 		NPCText.text += " " + _Player.Name + " ";
-		NPCText.text += activeResponceList [2].responce;
+		NPCText.text += activeResponceList [number].responce;
 
-		if (activeResponceList [2].NextDialogue != null) {
-			PlayNextResponce (activeResponceList [2].NextDialogue);
+		if (activeResponceList [number].NextDialogue != null) {
+			PlayNextResponce (activeResponceList [number].NextDialogue);
 		} else {
 			QuitDialogue ();
 		}
 
-	}
-	public void Option3(){
-		NPCText.text += "\n";
-		NPCText.text += " " + _Player.Name + " ";
-		NPCText.text += activeResponceList [3].responce;
 
-		if (activeResponceList [3].NextDialogue != null) {
-			PlayNextResponce (activeResponceList [3].NextDialogue);
-		} else {
-			QuitDialogue ();
-		}
 
-	}
-	public void Option4(){
-		NPCText.text += "\n";
-		NPCText.text += " " + _Player.Name + " ";
-		NPCText.text += activeResponceList [4].responce;
+		//_GameState._CharacterSelectI did as cdie you put the lime in the coconut and throw the can away}}
 
-		if (activeResponceList [4].NextDialogue != null) {
-			PlayNextResponce (activeResponceList [4].NextDialogue);
-		} else {
-			QuitDialogue ();
-		}
-	}
-	public void Option5(){
-		NPCText.text += "\n";
-		NPCText.text += " " + _Player.Name + " ";
-		NPCText.text += activeResponceList [5].responce;
 
-		if (activeResponceList [5].NextDialogue != null) {
-			PlayNextResponce (activeResponceList [5].NextDialogue);
-		} else {
-			QuitDialogue ();
-		}
-	}
-	public void Option6(){
-		NPCText.text += "\n";
-		NPCText.text += " " + _Player.Name + " ";
-		NPCText.text += activeResponceList [6].responce;
-
-		if (activeResponceList [6].NextDialogue != null) {
-			PlayNextResponce (activeResponceList [6].NextDialogue);
-		} else {
-			QuitDialogue ();
-		}
-
-	}
-	public void Option7(){
-		NPCText.text += "\n";
-		NPCText.text += " " + _Player.Name + " ";
-		NPCText.text += activeResponceList [7].responce;
-
-		if (activeResponceList [7].NextDialogue != null) {
-			PlayNextResponce (activeResponceList [7].NextDialogue);
-		} else {
-			QuitDialogue ();
-		}
-
-	}
-	public void Option8(){
-		NPCText.text += "\n";
-		NPCText.text += " " + _Player.Name + " ";
-		NPCText.text += activeResponceList [8].responce;
-
-		if (activeResponceList [8].NextDialogue != null) {
-			PlayNextResponce (activeResponceList [8].NextDialogue);
-		} else {
-			QuitDialogue ();
-		}
-
-	}
-	public void Option9(){
-		QuitDialogue ();
 	}
 
 	public void PlayNextResponce(Topic dialogue){
+		
+		_GameState._GameState = "DialogueMode";
+		
 		if (dialogue.Description != null) {
 			//NPCText.fontStyle = FontStyle.Italic;
 			NPCText.text = "<i>" + dialogue.Description + "</i> \n";
@@ -294,48 +90,59 @@ public class DialogueHandler : MonoBehaviour {
 		activeResponceList.Clear ();
 		ClearButtons ();
 		if (dialogue.responces.Count > 0) {
-			var count = 0;
-			var max = dialogue.responces.Count;
-			foreach (Button button in responceList) {
-				
-				if (count == max) {
-					break;
-				}
+//			var count = 0;
+//			var max = dialogue.responces.Count;
 
-				//button.gameObject.SetActive (true);
+			for (var i = 0; i < dialogue.responces.Count; i++) {
+				activeResponceList.Add (dialogue.responces[i]);										//add the npc responces to the active responce list			
 
-				button.GetComponentInChildren<Text> ().text = dialogue.responces [count].responce;
-				activeResponceList.Add (dialogue.responces [count]);
-				if (activeResponceList [count].SRace == true) {
+				GameObject button = Instantiate (ButtonPrefab);
+				tempbuttonlist.Add (button);
+				button.transform.SetParent (_ResponcePanel.transform, false);
+				button.GetComponentInChildren<Text> ().text =  dialogue.responces[i].responce;
+
+				if (dialogue.responces [i].SRace == true) {
 					//first check the race cos this is the most important cull
-					if (_Player.PlayerRace.RaceName == activeResponceList [count].CheckRace) {
+					if (_Player.PlayerRace.RaceName == dialogue.responces [i].CheckRace) {
 						button.gameObject.SetActive (true);
+						int number = i;
+						button.GetComponent<Button> ().onClick.AddListener (delegate {
+							Option (number);
+						});
 
-					} else if (_Player.PlayerRace.RaceName == "-" + activeResponceList [count].CheckRace) {
+					} else if (_Player.PlayerRace.RaceName == "-" +  dialogue.responces [i].CheckRace) {
 						button.gameObject.SetActive (false);
-						Debug.Log ("This race" + activeResponceList [count].CheckRace + "is  specifically excluded from the responce ");
+						Debug.Log ("This race" +  dialogue.responces + "is  specifically excluded from the responce ");
 					} else {
 						button.gameObject.SetActive (false);
-						Debug.Log ("you cannot see this racial requirement option " + activeResponceList [count].responce + " without " + activeResponceList [count].CheckRace);
+						Debug.Log ("you cannot see this racial requirement option " +  dialogue.responces[i] + " without " +  dialogue.responces[i].CheckRace);
 
 
 					}
 				}
 				//then check skill requirements
-				else if (activeResponceList [count].Requirement == true) {
-					if (_Player.SkillRequireCheck (activeResponceList [count].RequirementType, activeResponceList [count].RequirementChallange)) {
-						Debug.Log (_Player.SkillRequireCheck (activeResponceList [count].RequirementType, activeResponceList [count].RequirementChallange));
+				else if (activeResponceList [i].Requirement == true) {
+					if (_Player.SkillRequireCheck (activeResponceList [i].RequirementType, activeResponceList [i].RequirementChallange)) {
+						Debug.Log (_Player.SkillRequireCheck (activeResponceList [i].RequirementType, activeResponceList [i].RequirementChallange));
 						button.gameObject.SetActive (true);
+						int number = i;
+						button.GetComponent<Button> ().onClick.AddListener (delegate {
+							Option (number);
+						});
 					} else {
 						button.gameObject.SetActive (false);
-						Debug.Log ("You cannot use the responce " + activeResponceList [count].responce + "without " + activeResponceList [count].RequirementType + activeResponceList [count].RequirementChallange);
+						Debug.Log ("You cannot use the responce " + activeResponceList [i].responce + "without " + activeResponceList [i].RequirementType + activeResponceList [i].RequirementChallange);
 					}
 					//lastly check special requirements
-				} else if (activeResponceList [count].SRequirement == true) {
-					if (_Player.SpecialDialogueMarkers.Contains (activeResponceList [count].SpecialRequirement)) {
+				} else if (activeResponceList [i].SRequirement == true) {
+					if (_Player.SpecialDialogueMarkers.Contains (activeResponceList [i].SpecialRequirement)) {
 						button.gameObject.SetActive (true);
+						int number = i;
+						button.GetComponent<Button> ().onClick.AddListener (delegate {
+							Option (number);
+						});
 					} else {
-						Debug.Log ("you cannot see this special requirement option " + activeResponceList [count].responce + " without " + activeResponceList [count].SpecialRequirement);
+						Debug.Log ("you cannot see this special requirement option " + activeResponceList [i].responce + " without " + activeResponceList [i].SpecialRequirement);
 						button.gameObject.SetActive (false);
 					}
 
@@ -344,24 +151,30 @@ public class DialogueHandler : MonoBehaviour {
 				//if it hasnt be culled, display now.
 				else {
 					button.gameObject.SetActive (true);
+					int number = i;
+					button.GetComponent<Button> ().onClick.AddListener (delegate {
+						Option (number);
+					});
 				}
-				count += 1;
-
-
-
 
 			}
-//		
+
+		
 		}
 
 		else {
-			Responce10.gameObject.SetActive (true);
-			Responce10.GetComponentInChildren<Text> ().text = "Cancel";
-		}
-			
-			
+			GameObject button = Instantiate (ButtonPrefab);
+			tempbuttonlist.Add (button);
+			button.transform.SetParent (_ResponcePanel.transform, false);
+			button.GetComponentInChildren<Text> ().text = "Exit Dialogue";
+			button.GetComponent<Button> ().onClick.AddListener (QuitDialogue);
 
+			
+			
 		}
+
+
+	}
 	public void QuitDialogue(){
 		ClearButtons ();
 		activeResponceList.Clear ();
