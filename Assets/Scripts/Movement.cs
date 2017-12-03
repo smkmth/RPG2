@@ -57,6 +57,32 @@ public class Movement : MonoBehaviour{
 				
 				}
 			}
+		} else if (Input.GetMouseButtonDown (1) && _GameState._GameState == "PlayMode") {
+			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			RaycastHit hit;
+			if (Physics.Raycast (ray, out hit, 100)) {
+				
+				if (hit.transform.tag == "NPC") {
+					NPC targetnpc = hit.transform.gameObject.GetComponent<NPC> ();
+
+					Debug.Log(targetnpc.NPCDescription);
+
+				} else if (hit.transform.tag == "Item") {
+					ItemHandler targetitem = hit.transform.gameObject.GetComponent<ItemHandler> ();
+					agent.SetDestination (targetitem.transform.position);
+					//targetitem.PickUpItem ();
+					Debug.Log(targetitem.ItemDescription);
+				} else if (hit.transform.tag == "Interactable") {
+					Interactable targetinteraction = hit.transform.gameObject.GetComponent<Interactable> ();
+					agent.SetDestination (targetinteraction.InteractableMaker.transform.position);
+					Debug.Log(targetinteraction.InteractionDescription);
+
+
+
+
+
+				}
+			}
 		}
 
 	}

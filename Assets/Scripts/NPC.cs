@@ -9,6 +9,8 @@ public class NPC : MonoBehaviour {
 	public DialogueHandler _Dialogue;
 	public List<Topic> SpecialTopics = new List<Topic> ();
 	public Player _Player;
+	[TextArea(3,10)]
+	public string NPCDescription;
 	
 
 

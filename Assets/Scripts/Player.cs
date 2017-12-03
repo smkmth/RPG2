@@ -330,4 +330,6 @@ public class Player : MonoBehaviour {
 
 		//Inventory = loadedPlayer.inventory;
 	}
+
+
 }

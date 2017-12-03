@@ -5,6 +5,7 @@ public class ItemHandler : MonoBehaviour{
 
 	public Item item;
 	public Player _Player;
+	public string ItemDescription;
 
 	void Start(){
 		_Player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player>();
