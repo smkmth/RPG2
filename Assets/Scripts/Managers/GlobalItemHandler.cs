@@ -8,6 +8,7 @@ public class GlobalItemHandler : MonoBehaviour{
 	public ItemList GlobalItemList;
 	public List<string> GlobalItemString = new List<string>();
 	private Item usingItem;
+	public Item NullItem;
 	public ItemList tempitemlist;
 
 
@@ -35,6 +36,18 @@ public class GlobalItemHandler : MonoBehaviour{
 			tempitemlist.itemList.Add (GlobalItemList.itemList [index]);
 		}
 		return tempitemlist.itemList.ToArray();
+	}
+
+	public Item ConvertStringToItem(string itemname){
+		int storedindex = 0;
+		foreach (string itemstring in GlobalItemString) {
+			if (itemstring == itemname) {
+				storedindex = GlobalItemString.IndexOf (itemstring);
+			}
+
+		}
+		return  GlobalItemList.itemList [storedindex];
+
 	}
 
 

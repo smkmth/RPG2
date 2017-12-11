@@ -156,6 +156,7 @@ public class Player : MonoBehaviour {
 	}
 	public void ClearInventory(){
 		Inventory.itemList.Clear ();
+		Inventory.itemstring.Clear ();
 	}
 
 	
@@ -353,6 +354,7 @@ public class Player : MonoBehaviour {
 
 	}
 	public void Load(){
+		ClearInventory ();
 		PlayerData loadedPlayer = SaveLoadHandler.LoadPlayer ();
 		_LevelHandler.LoadLevel (loadedPlayer.currentlevel, loadedPlayer.currentleveldata);
 		Name = loadedPlayer.stringstats [0];
@@ -370,6 +372,7 @@ public class Player : MonoBehaviour {
 		SpecialDialogueMarkers.AddRange (loadedPlayer.stringmarkers);
 		PickedUpItems.AddRange (loadedPlayer.pickedupitems);
 		Inventory.itemList.AddRange(_GlobalItemHandler.LoadItems (loadedPlayer.inventorystring));
+		EquipedHeadItem = _GlobalItemHandler.ConvertStringToItem (loadedPlayer.headitem);
 		_GlobalItemHandler.tempitemlist.itemList.Clear ();
 
 

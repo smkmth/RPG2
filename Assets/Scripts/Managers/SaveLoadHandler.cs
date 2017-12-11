@@ -42,12 +42,18 @@ public class PlayerData {
 	public string[] stringmarkers;
 	public int[] intstats;
 	public string race;
+	
 	public float playerx;
 	public float playery;
 	public float playerz;
 	public string currentleveldata;
 	public string[] inventorystring;
+	public string headitem;
+	public string weaponitem;
+	public string bodyitem;
+	public string feetitem;
 	public string[] pickedupitems;
+
 	//public ItemList inventory;
 
 	public PlayerData(Player player){
@@ -74,7 +80,18 @@ public class PlayerData {
 		race = player.PlayerRace.RaceName;
 		//inventory = player.Inventory;
 		inventorystring = player.Inventory.SaveItemList();
-
+		if (player.EquipedHeadItem != null) {
+			headitem = player.EquipedHeadItem.itemName;
+		}
+		if (player.EquipedWeapon != null) {
+			weaponitem = player.EquipedWeapon.itemName;
+		}
+		if (player.EquipedBody != null) {
+			bodyitem = player.EquipedBody.itemName;
+		}
+		if (player.EquipedFeet != null) {
+			feetitem = player.EquipedFeet.itemName;
+		}
 	}
 
 
