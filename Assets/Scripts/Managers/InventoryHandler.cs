@@ -154,15 +154,51 @@ public class InventoryHandler : MonoBehaviour {
 	public void EquipItemButton(){
 		if (displayItem.equipableType != "") {
 			if (displayItem.equipableType == "Head") {
-				Debug.Log ("equip " + displayItem.itemName + " to Head");
-				_Player.EquipedHeadItem = displayItem;
+				if (_Player.EquipedHeadItem != null ) {
+					_Player.EquipedHeadItem = null;
+					Debug.Log ("unequip " + displayItem.itemName + " to Head");
+					RefreshText ();
+
+				} else {
+					
+					_Player.EquipedHeadItem = displayItem;
+					Debug.Log ("equip " + displayItem.itemName + " to Head");
+				}
 
 			} else if (displayItem.equipableType == "Weapon") {
-				Debug.Log ("equip " + displayItem.itemName + " to weapon");
+				if (_Player.EquipedWeapon != null ) {
+					_Player.EquipedWeapon = null;
+					Debug.Log ("unequip " + displayItem.itemName + " to Weapon");
+					RefreshText ();
+
+				} else {
+
+					_Player.EquipedWeapon = displayItem;
+					Debug.Log ("equip " + displayItem.itemName + " to Weapon");
+				}
+
 			} else if (displayItem.equipableType == "Body") {
-				Debug.Log ("equip " + displayItem.itemName + " to body");
+				if (_Player.EquipedBody != null ) {
+					_Player.EquipedBody = null;
+					Debug.Log ("unequip " + displayItem.itemName + " to Bodt");
+					RefreshText ();
+
+				} else {
+
+					_Player.EquipedBody  = displayItem;
+					Debug.Log ("equip " + displayItem.itemName + " to Body");
+				}
 			} else if (displayItem.equipableType == "Feet") {
-				Debug.Log ("equip " + displayItem.itemName + " to feet");
+				if (_Player.EquipedFeet != null ) {
+					_Player.EquipedFeet = null;
+					Debug.Log ("unequip " + displayItem.itemName + " to feet");
+					RefreshText ();
+
+				} else {
+
+					_Player.EquipedFeet  = displayItem;
+					Debug.Log ("equip " + displayItem.itemName + " to feet");
+				}
 			}
 		} else {
 			Debug.Log ("Item " + displayItem.itemName + " cannont be equiped");
@@ -197,9 +233,12 @@ public class InventoryHandler : MonoBehaviour {
 			ItemImage [count].sprite = item.itemImage;
 			count += 1;
 		}
-		if (_Player.EquipedHeadItem != null){
+		if (_Player.EquipedHeadItem != null) {
 			HeadText.text = _Player.EquipedHeadItem.itemName;
 			HeadImage.sprite = _Player.EquipedHeadItem.itemImage;
+		} else {
+			HeadText.text = "Head";
+			HeadImage.sprite = nullSprite;
 		}
 		if (_Player.EquipedBody != null) {
 			BodyText.text = _Player.EquipedBody.itemName;

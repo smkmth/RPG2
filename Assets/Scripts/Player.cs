@@ -89,6 +89,7 @@ public class Player : MonoBehaviour {
 	}
 	public Race NullRace;
 
+	[SerializeField]
 	private Item equipedheaditem;
 	public Item EquipedHeadItem{
 		get {
@@ -96,12 +97,12 @@ public class Player : MonoBehaviour {
 		}
 		set{
 			equipedheaditem = value;
-			if (equipedheaditem != null) {
-				EventManager.TriggerEvent("VariableChanged");
+
+			EventManager.TriggerEvent("VariableChanged");
 				
 			}
-		}
 	}
+	[SerializeField]
 	private Item equipedweapon;
 	public Item EquipedWeapon {
 		get {
@@ -112,10 +113,10 @@ public class Player : MonoBehaviour {
 			if (equipedweapon != null) {
 				EventManager.TriggerEvent ("VariableChanged");
 
-				
 			}
 		}
 	}
+	[SerializeField]
 	private Item equipedbody;
 	public Item EquipedBody{
 		get {
@@ -130,6 +131,7 @@ public class Player : MonoBehaviour {
 			}
 		}
 	}
+	[SerializeField]
 	private Item equipedfeet;
 	public Item EquipedFeet{
 		get {
