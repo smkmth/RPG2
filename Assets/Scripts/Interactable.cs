@@ -6,6 +6,7 @@ public class Interactable : MonoBehaviour {
 
 	public GameObject InteractableMaker;
 
+	[TextArea(3,10)]
 	public string InteractionDescription;
 
 	public void UseObject(){

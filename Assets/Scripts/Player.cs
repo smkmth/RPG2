@@ -89,6 +89,62 @@ public class Player : MonoBehaviour {
 	}
 	public Race NullRace;
 
+	private Item equipedheaditem;
+	public Item EquipedHeadItem{
+		get {
+			return equipedheaditem;
+		}
+		set{
+			equipedheaditem = value;
+			if (equipedheaditem != null) {
+				EventManager.TriggerEvent("VariableChanged");
+				
+			}
+		}
+	}
+	private Item equipedweapon;
+	public Item EquipedWeapon {
+		get {
+			return equipedweapon;
+		}
+		set {
+			equipedweapon = value;
+			if (equipedweapon != null) {
+				EventManager.TriggerEvent ("VariableChanged");
+
+				
+			}
+		}
+	}
+	private Item equipedbody;
+	public Item EquipedBody{
+		get {
+			return equipedbody;
+		}
+		set {
+			equipedbody = value;
+			if (equipedbody != null) {
+				EventManager.TriggerEvent ("VariableChanged");
+
+
+			}
+		}
+	}
+	private Item equipedfeet;
+	public Item EquipedFeet{
+		get {
+			return equipedfeet;
+		}
+		set {
+			equipedfeet = value;
+			if (equipedfeet != null) {
+				EventManager.TriggerEvent ("VariableChanged");
+
+
+			}
+		}
+	}
+
 	public void AddInventoryItem(Item item){
 		Inventory.itemList.Add (item);
 		EventManager.TriggerEvent("VariableChanged");

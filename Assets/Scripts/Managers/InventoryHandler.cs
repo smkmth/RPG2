@@ -28,6 +28,19 @@ public class InventoryHandler : MonoBehaviour {
 	public Button UseButton;
 	public Button EquipButton;
 	public Button DropButton;
+
+	public GameObject HeadSlot;
+	public Text HeadText;
+	public Image HeadImage;
+	public GameObject WeaponSlot;
+	public Text WeaponText;
+	public Image WeaponImage;
+	public GameObject BodySlot;
+	public Text BodyText;
+	public Image BodyImage;
+	public GameObject FeetSlot;
+	public Text FeetText;
+	public Image FeetImage;
 	/// <summary>
 	/// On awake, this sets the unity action variablechanged
 	/// to a new unity action, with the method refreshtext as the 
@@ -84,6 +97,14 @@ public class InventoryHandler : MonoBehaviour {
 		
 		SelectedItemButtons.SetActive (false);
 		_Player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player>();
+		HeadText = HeadSlot.GetComponentInChildren<Text> ();
+		HeadImage = HeadSlot.GetComponentInChildren<Image> ();
+		BodyText = BodySlot.GetComponentInChildren<Text> ();
+		BodyImage = BodySlot.GetComponentInChildren<Image> ();
+		WeaponText = WeaponSlot.GetComponentInChildren<Text> ();
+		WeaponImage = WeaponSlot.GetComponentInChildren<Image> ();
+		FeetText = FeetSlot.GetComponentInChildren<Text> ();
+		FeetImage = FeetSlot.GetComponentInChildren<Image> ();
 		foreach (Transform child in ItemPanel.transform) {
 			ItemSlots.Add (child.gameObject);
 			ItemImage.Add (child.gameObject.GetComponentInChildren<Image> ());
@@ -130,7 +151,23 @@ public class InventoryHandler : MonoBehaviour {
 		
 
 	}
+	public void EquipItemButton(){
+		if (displayItem.equipableType != "") {
+			if (displayItem.equipableType == "Head") {
+				Debug.Log ("equip " + displayItem.itemName + " to Head");
+				_Player.EquipedHeadItem = displayItem;
 
+			} else if (displayItem.equipableType == "Weapon") {
+				Debug.Log ("equip " + displayItem.itemName + " to weapon");
+			} else if (displayItem.equipableType == "Body") {
+				Debug.Log ("equip " + displayItem.itemName + " to body");
+			} else if (displayItem.equipableType == "Feet") {
+				Debug.Log ("equip " + displayItem.itemName + " to feet");
+			}
+		} else {
+			Debug.Log ("Item " + displayItem.itemName + " cannont be equiped");
+		}
+	}
 	
 
 	/// <summary>
@@ -160,6 +197,21 @@ public class InventoryHandler : MonoBehaviour {
 			ItemImage [count].sprite = item.itemImage;
 			count += 1;
 		}
-
+		if (_Player.EquipedHeadItem != null){
+			HeadText.text = _Player.EquipedHeadItem.itemName;
+			HeadImage.sprite = _Player.EquipedHeadItem.itemImage;
+		}
+		if (_Player.EquipedBody != null) {
+			BodyText.text = _Player.EquipedBody.itemName;
+			BodyImage.sprite = _Player.EquipedBody.itemImage;
+		}
+		if (_Player.EquipedWeapon != null) {
+			WeaponText.text = _Player.EquipedWeapon.itemName;
+			WeaponImage.sprite = _Player.EquipedWeapon.itemImage;
+		}
+		if (_Player.EquipedFeet != null) {
+			FeetText.text = _Player.EquipedFeet.itemName;
+			FeetImage.sprite = _Player.EquipedFeet.itemImage;
+		}
 	}
 }
