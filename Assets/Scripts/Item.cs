@@ -13,6 +13,9 @@ public class Item : ScriptableObject {
 	public string itemName;
 	public string itemDescription;
 	public Sprite itemImage;
+	public string itemType;
 	public string equipableType;
+
+	public List<ItemAttribute> attributes;
 
 }

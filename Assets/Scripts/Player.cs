@@ -303,6 +303,8 @@ public class Player : MonoBehaviour {
 	}
 
 
+
+
 	public bool SkillRequireCheck(string challangeType, int challange){
 		if (challangeType == "Physical") {
 			if (Physical > challange) {

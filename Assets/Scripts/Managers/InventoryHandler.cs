@@ -147,7 +147,7 @@ public class InventoryHandler : MonoBehaviour {
 	}
 
 	public void UseItemButton(){
-		_GlobalItemHandler.UseItem (displayItem.itemName);
+		_GlobalItemHandler.UseItem (displayItem.itemName, _Player.gameObject);
 		
 
 	}
@@ -196,7 +196,7 @@ public class InventoryHandler : MonoBehaviour {
 
 				} else {
 
-					_Player.EquipedFeet  = displayItem;
+					_Player.EquipedFeet = displayItem;
 					Debug.Log ("equip " + displayItem.itemName + " to feet");
 				}
 			}

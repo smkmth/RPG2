@@ -24,9 +24,23 @@ public class GlobalItemHandler : MonoBehaviour{
 	}
 
 
-	public void UseItem(string itemName){
+	public void UseItem(string itemName, GameObject user){
 		int index = GlobalItemString.IndexOf (itemName);
+		Item UsingItem = GlobalItemList [index];
+		if (UsingItem.itemType == "Weapon") {
+			if (UsingItem.attributes.Contains (WeaponAttribute)) {
+				int weaponindex = UsingItem.attributes.IndexOf (WeaponAttribute);
+				WeaponAttribute ItemWeapon = UsingItem.attributes [weaponindex];
+				Aim (user);
+			}
+		}
 		Debug.Log ("Trying to use a " + GlobalItemList.itemList [index].itemName);
+
+	}
+
+	public void Aim(GameObject aimer){
+		
+
 	}
 
 	public Item[] LoadItems (string[] itemarray){
