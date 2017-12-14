@@ -128,6 +128,14 @@ public class GameState : MonoBehaviour{
 			Time.timeScale = 0;
 
 
+		} else if (_GameState == "AimMode") {
+			_ShipElevatorGUI.SetActive (false);		
+			_CharacterSelect.SetActive (false);
+			_Inventory.SetActive (false);
+			_OnScreenGui.SetActive (true);
+			_PauseMenu.SetActive (false);
+			_DialogueWindow.SetActive (false);
+			Time.timeScale = 0;
 		}
 		
 

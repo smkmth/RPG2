@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 
 public class GlobalItemHandler : MonoBehaviour{
 
@@ -10,9 +11,11 @@ public class GlobalItemHandler : MonoBehaviour{
 	private Item usingItem;
 	public Item NullItem;
 	public ItemList tempitemlist;
+	public GameState _GameState;
 
 
 	void Start(){
+		_GameState = GetComponents<GameState> ();
 		foreach (Item item in GlobalItemList.itemList) {
 
 			if (item.itemName != null || item.itemName != " ") {
@@ -26,22 +29,31 @@ public class GlobalItemHandler : MonoBehaviour{
 
 	public void UseItem(string itemName, GameObject user){
 		int index = GlobalItemString.IndexOf (itemName);
-		Item UsingItem = GlobalItemList [index];
-		if (UsingItem.itemType == "Weapon") {
-			if (UsingItem.attributes.Contains (WeaponAttribute)) {
-				int weaponindex = UsingItem.attributes.IndexOf (WeaponAttribute);
-				WeaponAttribute ItemWeapon = UsingItem.attributes [weaponindex];
-				Aim (user);
+		usingItem = GlobalItemList.itemList [index];
+
+		for (int i = 0; i < usingItem.attributes.Count; i ++){
+			Debug.Log (usingItem.attributes [i].GetType().ToString ());
+			if (usingItem.attributes [i].GetType() == typeof(WeaponAttribute)){
+				Debug.Log (usingItem.attributes [i].GetType().ToString ());
+				WeaponAttribute weaponattribute = usingItem.attributes [i] as WeaponAttribute;
+				_GameState._GameState = "AimMode";
+
+				Debug.Log("Weapon Attribute name = " + weaponattribute.Name + " WeaponAttribute Damage = " + weaponattribute.Damage);
+
 			}
 		}
-		Debug.Log ("Trying to use a " + GlobalItemList.itemList [index].itemName);
+
+
+
+
+
+		Debug.Log ("Trying to use a " + usingItem.itemName);
 
 	}
 
-	public void Aim(GameObject aimer){
 		
 
-	}
+
 
 	public Item[] LoadItems (string[] itemarray){
 		foreach (string itemstring in itemarray) {
