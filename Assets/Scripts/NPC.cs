@@ -19,6 +19,16 @@ public class NPC : MonoBehaviour {
 	}
 
 
+	public void Damage(int amount){
+		Health -= amount;
+		if (Health <= 0) {
+			Kill ();
+		}
+	}
+
+	public void Kill (){
+		Destroy (gameObject);
+	}
 
 	public void TalkToThisNPC(){
 		_Dialogue = GameObject.FindGameObjectWithTag ("Dialogue").GetComponent<DialogueHandler> ();

@@ -12,10 +12,11 @@ public class GlobalItemHandler : MonoBehaviour{
 	public Item NullItem;
 	public ItemList tempitemlist;
 	public GameState _GameState;
+	public GameObject _ItemTarget;
 
 
 	void Start(){
-		_GameState = GetComponents<GameState> ();
+		_GameState = GetComponent<GameState> ();
 		foreach (Item item in GlobalItemList.itemList) {
 
 			if (item.itemName != null || item.itemName != " ") {
@@ -28,24 +29,23 @@ public class GlobalItemHandler : MonoBehaviour{
 
 
 	public void UseItem(string itemName, GameObject user){
+		_ItemTarget = null;
 		int index = GlobalItemString.IndexOf (itemName);
 		usingItem = GlobalItemList.itemList [index];
+		_GameState._GameState = "AimMode";
+		//turn to aim mode get target first, then do the gauntlet of item effects
 
 		for (int i = 0; i < usingItem.attributes.Count; i ++){
 			Debug.Log (usingItem.attributes [i].GetType().ToString ());
 			if (usingItem.attributes [i].GetType() == typeof(WeaponAttribute)){
 				Debug.Log (usingItem.attributes [i].GetType().ToString ());
 				WeaponAttribute weaponattribute = usingItem.attributes [i] as WeaponAttribute;
-				_GameState._GameState = "AimMode";
-
+				_ItemTarget.GetComponent<NPC> ().Damage (weaponattribute.Damage);
 				Debug.Log("Weapon Attribute name = " + weaponattribute.Name + " WeaponAttribute Damage = " + weaponattribute.Damage);
 
 			}
 		}
-
-
-
-
+		_GameState._GameState = "PlayMode";
 
 		Debug.Log ("Trying to use a " + usingItem.itemName);
 

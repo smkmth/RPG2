@@ -5,6 +5,6 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "ItemAttribute", menuName = "Inventory/DamageAttribute", order = 1)]
 public class WeaponAttribute : ItemAttribute {
-	public float Damage;
+	public int Damage;
 	public string Name;
 }

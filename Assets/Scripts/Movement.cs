@@ -12,9 +12,10 @@ public class Movement : MonoBehaviour{
 	public GameObject _OnScreenGUI;
 	public GameObject InfoPrefab;
 	public List<GameObject> InfoBoxList = new List<GameObject> ();
-
+	public GlobalItemHandler _GlobalItemHandler;
 	void Start(){
 		agent = GetComponent<NavMeshAgent> ();
+		_GlobalItemHandler = GameObject.FindGameObjectWithTag ("Manager").GetComponent<GlobalItemHandler> ();
 
 	}
 
@@ -112,7 +113,8 @@ public class Movement : MonoBehaviour{
 			if (Physics.Raycast (ray, out hit, 100)) {
 
 				if (hit.transform.tag == "NPC") {
-					//send the game obeject to the globitem 
+					_GlobalItemHandler._ItemTarget = hit.collider.gameObject;
+					//send the target game obeject to the globitem 
 
 				} 
 
