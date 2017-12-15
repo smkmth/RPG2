@@ -80,7 +80,7 @@ public class NPC : MonoBehaviour {
 			health = value;
 			if (health != null) {
 				EventManager.TriggerEvent ("NPCVariableChanged");
-				Debug.Log ("health changed to " + value);
+				Debug.Log (gameObject.name + " health changed to " + value);
 			}
 		}
 	}

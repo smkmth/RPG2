@@ -24,7 +24,6 @@ public class Movement : MonoBehaviour{
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
 			if (Input.GetMouseButtonDown (0)) {
-				
 				foreach (GameObject infobox in InfoBoxList) {
 					Destroy (infobox);
 				}
@@ -110,17 +109,20 @@ public class Movement : MonoBehaviour{
 		} else if (_GameState._GameState == "AimMode"){
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
-			if (Physics.Raycast (ray, out hit, 100)) {
+			if (Input.GetMouseButtonDown (0)) {
+				
+				if (Physics.Raycast (ray, out hit, 100)) {
 
-				if (hit.transform.tag == "NPC") {
-					_GlobalItemHandler._ItemTarget = hit.collider.gameObject;
-					//send the target game obeject to the globitem 
+					if (hit.transform.tag == "NPC") {
+						_GlobalItemHandler.itemTarget = hit.collider.gameObject;
+						_GlobalItemHandler.UseItem ();
+						//send the target game obeject to the globitem 
 
-				} 
+					} 
 
-			}//end of aim mode click sucsessfull hit method
+				}//end of aim mode click sucsessfull hit method
 
-
+			}//end of get button down
 		}//end of aim mode
 	}//end of update
 

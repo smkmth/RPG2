@@ -147,7 +147,7 @@ public class InventoryHandler : MonoBehaviour {
 	}
 
 	public void UseItemButton(){
-		_GlobalItemHandler.UseItem (displayItem.itemName, _Player.gameObject);
+		_GlobalItemHandler.AimItem (displayItem.itemName, _Player.gameObject);
 		
 
 	}
