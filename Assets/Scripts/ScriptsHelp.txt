@@ -1,0 +1,18 @@
+The scripts in this game are sorted by what objects the scripts themselves are put on. 
+
+Each script has a summary at the top of it, so you can get an idea of what it does at a glance. 
+
+In The Scene scripts go on objects in the actual scene. 
+Thats stuff like the script for NPCs, or a script which destroys items when they are picked up. 
+
+Not used is my folder for useless scripts, orginally written for different builds of the game. I might need them later so i dont want to delete them, but they are not used in the game. 
+
+OnThe_appObject is my folder for scripts which go on the _app object in the preload scene. This is where most of the scripts in the game are located.
+
+Stuff like the player data script, a save/load script, GUI, character creation ect ect. 
+
+Scriptable Objects is the folder i am using for setting up the scriptable objects in the game. 
+
+These shouldnt need much messing around with really, you actually create scriptable objects by right clicking on the project panel and selecting from the create asset menu. 
+
+This is just for tweeking what the scriptable objects actually do. 

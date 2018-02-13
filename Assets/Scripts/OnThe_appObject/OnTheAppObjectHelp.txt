@@ -1,0 +1,16 @@
+Once again the folders here are divided by where the script is located. The scripts in the game are attached to children of the _app object found in the preload scene. 
+
+Gui Folder
+The scripts in the GUI folder are in the GUI object. It covers not only handling the gui, but also things which prominantly use GUI to function like CharacterCreateHandler, DialogueHandler, InventoryHandler and PauseMenu. 
+
+Manager folder
+The scripts in the Manager folder are in the Manager Object. These are broad game wide controls, like the EventManager, GameState, GlobalItemHandler and LevelHandler.
+
+Player Folder
+The scripts in the Player folder are in the PlayerObj Object, a child of the Player object. These are things which specfically affect the player, like Player, PlayerRotation and Movement.
+
+Static
+There is currently only one script in the static folder, and it is the SaveLoadHandler, which is not on any object on the scene as it is a static object. 
+
+DDOL 
+Dont Destroy On Load. Its a script that stops the _app object from being destroyed on load. it is also the only script on the actual _app object. 

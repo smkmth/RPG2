@@ -1,0 +1,5 @@
+This folder contains all the scriptable objects i have made for the game (not including leveldata, which are bundled with their relevant scenes in the scene folder).
+
+Obviously Items and Speach are where i keep the scriptable objects relating to the items in the game, and the dialogue files. 
+
+CharacterCreation has both custom races and the races special abilities used in character creation. 

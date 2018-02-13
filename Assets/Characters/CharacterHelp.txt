@@ -1,0 +1,7 @@
+This is where i am storing all the prefabs with the characters set up. 
+
+They are in this folder because they are brought into a scene dynamically with the leveldata scriptable object. 
+
+Dont add a character to the scene by just dragging a prefab into the scene, instead use the scenes leveldata, and just add another npc.
+
+This way you can dynamically change who appears in a scene as you play.  

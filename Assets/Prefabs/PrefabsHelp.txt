@@ -1,0 +1,9 @@
+This is where i keep all the prefabs i have used in the game. 
+
+Markers are the things i use as transform coordinates, Ui is stuff used in the ui.
+
+Scene Items is more specific. I use scene items as a place to put any objects the player picks up. 
+
+These items should definately not just be dragged and dropped into a scene, and instead should be put into the leveldata scriptable object.
+
+This is so i can dynamically remove the item after the player picks them up instead of it just constantly regenerating every time the level is loaded.
