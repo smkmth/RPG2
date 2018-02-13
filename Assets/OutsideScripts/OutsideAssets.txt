@@ -1,0 +1,5 @@
+This folder is where i keep all the imported assets. 
+
+I originally planned to use these for a crazy design i had for a rotating fake gravity arbaritum, but i have since decided that was a bit of a cul de sac destracting me from carrying on with the game.
+
+Further more i feel this effect would be easier achieved with a shader which made it look like a curved surface, similar to the shader used in animal crossing.

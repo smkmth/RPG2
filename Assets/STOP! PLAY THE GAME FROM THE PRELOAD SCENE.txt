@@ -1,0 +1,11 @@
+Before you click play, and you are like "hey what? this game dont work" calm down!
+
+You need to open the preload scene in the scenes folder and run the game from that scene.
+
+If switching back and forth from the preload gets annoying, you can even drag the preload scene onto the hiearchy of the scene you are working in and run the game from that scene.
+
+But dont run the game from any scene other then preload, else it will just throw exception errors.  
+
+Its how i keep all the game logic seperate from the actual game, and how i make sure it isnt destroyed everytime i load the game.
+
+It also means i dont have to mess around with singletons and that mess. 

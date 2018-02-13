@@ -1,0 +1,2 @@
+This folder is just for all the models I use in the game. It also has the floor plans currently standing in for the graphics.
+

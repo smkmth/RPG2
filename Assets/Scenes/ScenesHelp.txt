@@ -1,0 +1,6 @@
+Each actual scene is located within its relvant folder along with the level data and the navmesh data. 
+
+The only exception is preload. i put this scene on the top because 
+
+A. it has no level data file
+B. i need to run that scene before any other scene so it needs to be convinent to switch to. 
