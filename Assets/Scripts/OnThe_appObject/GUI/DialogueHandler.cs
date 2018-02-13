@@ -5,8 +5,13 @@ using UnityEngine.UI;
 
 /// <summary>
 /// incredably convoluted class hopefully we will never again have to touch this one
-/// should just take the responces from the dialogue scriptable objects and just 
-/// run them 
+/// takes the responces from the dialogue scriptable objects and just 
+/// runs them. It then populates a list of buttons with the possible responces printed on them.
+/// 
+/// Whatever is selected then chains to the next responce untill the dialogue is exausted. 
+/// 
+/// The player has a string list of special variables which get applied to it when it encounters 
+/// a responce which needs to be remembered.
 /// </summary>
 public class DialogueHandler : MonoBehaviour {
 

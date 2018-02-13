@@ -4,6 +4,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
+/// <summary>
+/// The Globabl Item Handler is a list of all the items in the game. 
+/// 
+/// It currently exists for saving. At the moment, when the player saves the game, all the items they
+/// have are flattened into a string. When the player reloads, this script reads the string and gives 
+/// the player's items back by pulling from the global item list. 
+/// 
+/// It might hold all item logic aswell if thats the direction i go.
+/// 
+/// 
+/// 
+/// </summary>
+
+
 public class GlobalItemHandler : MonoBehaviour{
 
 	public ItemList GlobalItemList;

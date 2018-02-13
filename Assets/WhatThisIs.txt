@@ -1,0 +1,42 @@
+This is an engine i wrote from scratch to handle isometric style conversation heavy games. 
+
+I wrote the whole thing quite quickly and without assistance.
+
+It has its wonky elements but i am fairly proud of it. 
+
+I feel this game is a good demonstration of both my strengths and weaknesses. 
+
+It is ambitious. Far too ambitious for just one person to do alone. I would have been better off focusing on smaller projects which i 
+had a hope in hell of finishing. 
+
+Its not well planned out. I didnt write a design doc, or any psudocode for this game, instead i kind of just waded in to it. 
+Because of this approach, i found myself constantly having to go back and rework things when i worked out a better way of doing them, and i wasted a lot of time. 
+
+The lack of planning also breeded all manner of other problems. I have inconsistant naming conventions, difficult object and file hiarachy, and lots of litter from experiments which failed lieing around the code.  Most importantly, everything is too overwraught. Things are grouped together in the same class which shouldnt be. I should have made smaller more lightweight classes which only performed one or two functions. 
+
+In a broader scope, a clearer plan would have probably lead to less wierd diversions, like i spent two months or so building a crazy long circular O'Niell cylinder, and i actually managed to do it, using navmesh links, and 4 downwards raycasting boxes which set the players orientation, but at the end of all that, i realised you could not rotate terrain, rendering all that work entirely moot.   
+
+If ambition and lack of planning is my biggest weakness, then my biggest strength is adaptablity and spirit.
+
+I can bang my head against the same problem for weeks without getting frustrated. 
+
+If i find out that its wrong, i can rip it apart and rebuild it 
+ 
+
+Major Features that i am proud of:
+
+-Character Creation. You can name a character, change what their race is, allocate them stats and a gender. This stuff can all be reflected in the dialogue. 
+
+- Dialouge. While it still needs work, I wrote a working dialouge system which allows for branching paths and persistance. 
+
+If you go to the MedBay- you can talk to a character called R-ready. After you finish talking to him, he will remember that you have already talked with him and change his dialogue. 
+
+-Inventory Screen. You can pick stuff up, and the stuff will go into your inventory screen. The game rembembers that you picked up the object and wont respawn it if you reload the level. 
+
+-Levelbuilding. Nothing is in the scene, it is instead placed in the scene by a scriptable object. The levelhandler will check if you have picked up any items and wont load them if you have. I can load the player or any npcs wherever i want when a level loads. 
+
+-Saving and Loading. You can save the game, and everything is persitant, the items, health, and the stats.
+
+Stuff 
+
+

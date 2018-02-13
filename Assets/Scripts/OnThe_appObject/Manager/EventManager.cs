@@ -4,7 +4,15 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class EventManager : MonoBehaviour {
-
+	/// <summary>
+	/// The event manager handles all the events in the game. 
+	/// 
+	/// It has a dictionary with all the events and a string which associates the events to a name.
+	/// 
+	/// It then has a singleton which returns one evenet manager, or sets itself as the event manager.
+	/// 
+	///  
+	/// </summary>
 	private Dictionary <string, UnityEvent> eventDictionary;
 
 	private static EventManager eventManager;
@@ -19,7 +27,7 @@ public class EventManager : MonoBehaviour {
 
 				if (!eventManager)
 				{
-					Debug.LogError ("There needs to be one active EventManger script on a GameObject in your scene.");
+					Debug.LogError ("Do you have an active EventManger script on a GameObject in your scene? If no, put one in");
 				}
 				else
 				{

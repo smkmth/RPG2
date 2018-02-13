@@ -1,5 +1,7 @@
 The scripts in this game are sorted by what objects the scripts themselves are put on. 
 
+Each script has a summary at the top of it, so you can get an idea of what it does at a glance. 
+
 In The Scene scripts go on objects in the actual scene. 
 Thats stuff like the script for NPCs, or a script which destroys items when they are picked up. 
 

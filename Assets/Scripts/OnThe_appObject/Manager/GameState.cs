@@ -3,13 +3,45 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 /// <summary>
-/// Game states are - as strings :
+/// GameState is a fancy way of handling what GUI elements are currently switched on, if the
+/// player can move and if the game is running or paused.  
 /// 
+/// By storing this all in gamestate, i dont have to fiddle around with this kind of stuff on 
+/// a case by case basis i can just set it broadly
+/// 
+/// It also handles the persistant 'GUI' controls, like the pause menu and the inventory menu
+/// 
+/// 
+/// Game states are - as strings :
+///
 /// CharacterCreateMode - Where the character create window shows up - time is paused
 /// PlayMode - where the character can move around and interact with the enviroment - time is not paused
 /// PauseMode - where you can save and load, change options, quit or resume - time is paused
 /// DialogueMode - where you are talking with another npc - atm time is not paused- will change later
-/// InventoryMode
+/// InventoryMode - where you can equip weapons and that - time is paused
+/// MainmMenu - the first screen of the game 
+/// Elevatormode - puts up the elevator menu - time is paused
+/// Aimmode- i think does nothing atm 
+/// 
+/// _GameState - a getsetter which returns what that game state is, and sets the game state
+/// to whatever you want it to be. 
+/// 
+/// A whole bunch of GUI objects. Importantly, these are the 'display objects' which are not 
+/// attached to any logic and can be turned on and off without changing anything which calls them.
+/// 
+/// For instance, i can turn off _Inventory without loosing any references to the inventoryhandler.
+/// 
+/// GetState()  stupidly named now i think of it, but get state enacts any changes which need to be made 
+/// when a state is on or off. It just goes through a list of what should be on or off. 
+/// 
+/// one slightly anoying thing is that i have to update each state when a new gui object is added.
+/// its slightly annoying, in the future i will find a more flexiable work around, but for now its fine.
+/// 
+/// ChangeState() a public method which changes the state. This is handled by my setter, this is just a 
+/// legacy feature i need to erradicate. 
+/// 
+/// Update ()  a short stack of if else conditionals which handle when and when you cannot pause, and go into the 
+/// inventory. 
 /// 
 /// </summary>
 public class GameState : MonoBehaviour{
